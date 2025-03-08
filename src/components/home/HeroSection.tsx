@@ -169,7 +169,7 @@ const HeroSection: React.FC = () => {
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 Raih Impian PTN <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-200 filter drop-shadow-sm">Bersama UTBK Prep</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-200 filter drop-shadow-sm">Bersama UTBKIn</span>
               </h1>
               
               <p className="text-lg md:text-xl text-white/90 max-w-lg">

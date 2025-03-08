@@ -69,7 +69,7 @@ const Navbar = () => {
                   UTBK
                 </span>
                 <span className="text-2xl font-bold text-secondary-800 dark:text-white">
-                  Prep
+                  In
                 </span>
               </motion.div>
             </a>
