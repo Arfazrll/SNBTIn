@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
             variants={itemVariants}
             className="space-y-4"
           >
-            <h3 className="text-xl font-bold text-secondary-900 dark:text-white mb-4">UTBK Prep</h3>
+            <h3 className="text-xl font-bold text-secondary-900 dark:text-white mb-4">UTBK In</h3>
             <p className="text-secondary-600 dark:text-secondary-400">
               Platform e-learning untuk persiapan UTBK bagi siswa SMA yang ingin melanjutkan ke perguruan tinggi negeri.
             </p>
