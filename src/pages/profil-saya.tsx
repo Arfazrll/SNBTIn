@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { FiUser, FiMail, FiPhone, FiCalendar, FiMapPin, FiEdit2, FiSave } from 'react-icons/fi';
-import Link from 'next/link';
 import Image from 'next/image';
 
 // Interface untuk data pengguna
@@ -107,11 +106,6 @@ const UserProfilePage = () => {
           <h2 className="mt-4 text-2xl font-semibold text-secondary-800 dark:text-white">Anda belum login</h2>
           <p className="mt-2 text-secondary-600 dark:text-secondary-400">Silakan login untuk melihat profil Anda</p>
         </div>
-        <Link href="/login">
-          <a className="btn-primary py-2 px-6 rounded-lg">
-            Login
-          </a>
-        </Link>
       </div>
     );
   }
