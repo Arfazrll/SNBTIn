@@ -65,7 +65,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
       <Layout>
         {domLoaded && (
-          <AnimatePresence mode="wait" initial={false} onExitComplete={() => {
+          <AnimatePresence mode="wait" initial={true} onExitComplete={() => {
             if (typeof window !== 'undefined') {
               window.scrollTo(0, 0);
             }

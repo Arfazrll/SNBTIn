@@ -193,10 +193,6 @@ export default function Home() {
                   <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
                     <FiSettings className="text-blue-500 text-xl animate-spin-slow" />
                   </div>
-                  <div className="text-white">
-                    <p className="text-sm font-medium">Platform Terkini</p>
-                    <p className="text-xs opacity-80">Interaktif & Responsif</p>
-                  </div>
                 </div>
               </div>
             </motion.div>

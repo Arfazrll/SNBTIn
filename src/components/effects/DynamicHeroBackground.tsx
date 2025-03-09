@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import * as THREE from 'three';
 import { FiBook, FiCheckSquare, FiAward, FiTarget, FiStar, FiBarChart } from 'react-icons/fi';
 
@@ -23,6 +23,7 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [lowPerformance, setLowPerformance] = useState<boolean>(false);
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
+  const controls = useAnimation();
   
   // Particles settings based on intensity
   const getParticleCount = useCallback(() => {
@@ -179,12 +180,15 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
       
       window.addEventListener('resize', handleResize);
       
+      // Ensure animations start on first load
+      controls.start("visible");
+      
       return () => {
         window.removeEventListener('resize', handleResize);
         cleanupThreeScene();
       };
     }
-  }, [handleResize, cleanupThreeScene]);
+  }, [handleResize, cleanupThreeScene, controls]);
   
   // Initialize Three.js scene when dimensions change
   useEffect(() => {
@@ -255,7 +259,15 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
     });
     
     return (
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <motion.div 
+        className="absolute inset-0 overflow-hidden pointer-events-none"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { opacity: 0 },
+          visible: { opacity: 1, transition: { staggerChildren: 0.01 } }
+        }}
+      >
         {particles.map(particle => (
           <motion.div
             key={particle.id}
@@ -265,6 +277,10 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
               height: particle.size,
               left: `${particle.x}%`,
               top: `${particle.y}%`,
+            }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 0.6 }
             }}
             animate={{
               x: [0, ((particle.id * 17) % 100) - 50, 0],
@@ -279,7 +295,7 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
             }}
           />
         ))}
-      </div>
+      </motion.div>
     );
   }, [getParticleCount]);
   
@@ -345,6 +361,11 @@ const DynamicHeroBackground: React.FC<DynamicHeroBackgroundProps> = ({
       </div>
     </>
   ), []);
+  
+  // Use a placeholder strategy for server side rendering
+  if (!isMounted) {
+    return null; // Return nothing during SSR to avoid hydration issues
+  }
   
   return (
     <div ref={containerRef} className="absolute inset-0 overflow-hidden">
