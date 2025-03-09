@@ -136,7 +136,7 @@ const Navbar = () => {
                 transition={{ duration: 0.5 }}
               >
                 <span className="text-2xl font-bold text-gradient">
-                  UTBK
+                  SNBT
                 </span>
                 <span className="text-2xl font-bold text-secondary-800 dark:text-white">
                   In

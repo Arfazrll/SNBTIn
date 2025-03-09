@@ -72,7 +72,7 @@ export const utbkSubjects = [
     id: 1,
     name: "Matematika",
     icon: "FiActivity",
-    description: "Materi matematika untuk UTBK mencakup aljabar, geometri, statistika, dan kalkulus dasar.",
+    description: "Materi matematika untuk SNBT mencakup aljabar, geometri, statistika, dan kalkulus dasar.",
     topics: ["Aljabar", "Geometri", "Statistika", "Kalkulus Dasar"],
     color: "blue"
   },
@@ -80,7 +80,7 @@ export const utbkSubjects = [
     id: 2,
     name: "Bahasa Indonesia",
     icon: "FiBook",
-    description: "Materi bahasa Indonesia untuk UTBK mencakup pemahaman bacaan, tata bahasa, dan penulisan.",
+    description: "Materi bahasa Indonesia untuk SNBT mencakup pemahaman bacaan, tata bahasa, dan penulisan.",
     topics: ["Pemahaman Bacaan", "Tata Bahasa", "Penulisan", "Sastra"],
     color: "red"
   },
@@ -88,7 +88,7 @@ export const utbkSubjects = [
     id: 3,
     name: "Bahasa Inggris",
     icon: "FiGlobe",
-    description: "Materi bahasa Inggris untuk UTBK mencakup reading comprehension, grammar, dan vocabulary.",
+    description: "Materi bahasa Inggris untuk SNBT mencakup reading comprehension, grammar, dan vocabulary.",
     topics: ["Reading Comprehension", "Grammar", "Vocabulary", "Structure"],
     color: "green"
   },
@@ -96,7 +96,7 @@ export const utbkSubjects = [
     id: 4,
     name: "TPS (Tes Potensi Skolastik)",
     icon: "FiBrain",
-    description: "Materi TPS untuk UTBK mencakup penalaran umum, kuantitatif, analitis, dan kemampuan baca.",
+    description: "Materi TPS untuk SNBT mencakup penalaran umum, kuantitatif, analitis, dan kemampuan baca.",
     topics: ["Penalaran Umum", "Penalaran Kuantitatif", "Penalaran Analitis", "Kemampuan Memahami Bacaan"],
     color: "purple"
   }
@@ -108,7 +108,7 @@ export const testimonials = [
     name: "Ahmad Farhan",
     avatar: "https://randomuser.me/api/portraits/men/67.jpg",
     university: "Universitas Indonesia",
-    text: "Berkat UTBK Prep, saya berhasil masuk jurusan Teknik Informatika UI. Materinya lengkap dan mudah dipahami."
+    text: "Berkat SNBTIn, saya berhasil masuk jurusan Teknik Informatika UI. Materinya lengkap dan mudah dipahami."
   },
   {
     id: 2,
@@ -122,15 +122,15 @@ export const testimonials = [
     name: "Budi Santoso",
     avatar: "https://randomuser.me/api/portraits/men/67.jpg",
     university: "Universitas Gadjah Mada",
-    text: "Fitur latihan soal dengan pembahasan jelas dan detail. Terima kasih UTBK Prep!"
+    text: "Fitur latihan soal dengan pembahasan jelas dan detail. Terima kasih SNBTIn!"
   }
 ];
 
 export const faqItems = [
   {
     id: 1,
-    question: "Apa itu UTBK Prep?",
-    answer: "UTBK Prep adalah platform e-learning yang dirancang khusus untuk membantu siswa SMA mempersiapkan diri menghadapi UTBK (Ujian Tulis Berbasis Komputer) dengan materi pembelajaran yang komprehensif dan interaktif."
+    question: "Apa itu SNBTIn?",
+    answer: "SNBTIn adalah platform e-learning yang dirancang khusus untuk membantu siswa SMA mempersiapkan diri menghadapi SNBT (Ujian Tulis Berbasis Komputer) dengan materi pembelajaran yang komprehensif dan interaktif."
   },
   {
     id: 2,
@@ -140,7 +140,7 @@ export const faqItems = [
   {
     id: 3,
     question: "Apakah semua materi dapat diakses secara gratis?",
-    answer: "UTBK Prep menyediakan beberapa materi dasar yang dapat diakses secara gratis. Untuk akses ke semua materi, latihan soal, dan fitur premium lainnya, Anda perlu berlangganan paket premium kami."
+    answer: "SNBTIn menyediakan beberapa materi dasar yang dapat diakses secara gratis. Untuk akses ke semua materi, latihan soal, dan fitur premium lainnya, Anda perlu berlangganan paket premium kami."
   },
   {
     id: 4,
@@ -150,14 +150,14 @@ export const faqItems = [
   {
     id: 5,
     question: "Apakah ada forum diskusi untuk tanya jawab?",
-    answer: "Ya, UTBK Prep menyediakan forum diskusi di mana Anda dapat bertanya, berdiskusi, dan mendapatkan jawaban dari pengajar dan sesama siswa."
+    answer: "Ya, SNBTIn menyediakan forum diskusi di mana Anda dapat bertanya, berdiskusi, dan mendapatkan jawaban dari pengajar dan sesama siswa."
   }
 ];
 
 export const courses = [
   {
     id: 1,
-    title: "Matematika Dasar UTBK",
+    title: "Matematika Dasar SNBT",
     instructor: "Dr. Budi Matematika",
     level: "Dasar",
     duration: "10 minggu",
@@ -169,7 +169,7 @@ export const courses = [
   },
   {
     id: 2,
-    title: "Bahasa Indonesia untuk UTBK",
+    title: "Bahasa Indonesia untuk SNBT",
     instructor: "Prof. Sinta Bahasa",
     level: "Menengah",
     duration: "8 minggu",
@@ -181,7 +181,7 @@ export const courses = [
   },
   {
     id: 3,
-    title: "Fisika UTBK Komprehensif",
+    title: "Fisika SNBT Komprehensif",
     instructor: "Dr. Andi Fisika",
     level: "Lanjutan",
     duration: "12 minggu",
@@ -193,7 +193,7 @@ export const courses = [
   },
   {
     id: 4,
-    title: "Penalaran TPS UTBK",
+    title: "Penalaran TPS SNBT",
     instructor: "Dra. Maya Logika",
     level: "Dasar",
     duration: "6 minggu",
@@ -205,7 +205,7 @@ export const courses = [
   }
 ];
 
-// Data materi lengkap UTBK
+// Data materi lengkap SNBT
 export const utbkMaterials = {
   penalaranUmum: {
     title: "Penalaran Umum",

@@ -12,12 +12,12 @@ interface Feature {
 }
 
 const features: Feature[] = [
-  { id: 1, icon: 'book', title: 'Materi Lengkap', description: 'Materi pembelajaran yang komprehensif mencakup semua mata pelajaran UTBKIn.', colorClass: 'primary' },
+  { id: 1, icon: 'book', title: 'Materi Lengkap', description: 'Materi pembelajaran yang komprehensif mencakup semua mata pelajaran SNBTIn.', colorClass: 'primary' },
   { id: 2, icon: 'video', title: 'Video Interaktif', description: 'Pembelajaran melalui video yang interaktif dan mudah dipahami.', colorClass: 'red' },
   { id: 3, icon: 'target', title: 'Latihan Soal', description: 'Ribuan latihan soal dengan pembahasan untuk meningkatkan kemampuanmu.', colorClass: 'green' },
   { id: 4, icon: 'users', title: 'Forum Diskusi', description: 'Diskusikan pertanyaan dan dapatkan jawaban dari pengajar dan sesama siswa.', colorClass: 'purple' },
   { id: 5, icon: 'activity', title: 'Analisis Kemampuan', description: 'Pantau perkembangan belajarmu dengan analisis performa yang detail.', colorClass: 'blue' },
-  { id: 6, icon: 'award', title: 'Tryout Berkala', description: 'Simulasi UTBKIn secara berkala untuk mengukur kesiapanmu menghadapi ujian.', colorClass: 'orange' }
+  { id: 6, icon: 'award', title: 'Tryout Berkala', description: 'Simulasi SNBTIn secara berkala untuk mengukur kesiapanmu menghadapi ujian.', colorClass: 'orange' }
 ];
 
 const containerVariants: Variants = {
@@ -43,10 +43,10 @@ const FeaturesSection: React.FC = () => {
       <div className="container mx-auto px-4 text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-secondary-900 dark:text-white">
-            Kenapa Memilih UTBKIn?
+            Kenapa Memilih SNBTIn?
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-400">
-            Kami menyediakan semua kebutuhan belajarmu untuk persiapan UTBKIn yang lebih efektif dan menyenangkan.
+            Kami menyediakan semua kebutuhan belajarmu untuk persiapan SNBTIn yang lebih efektif dan menyenangkan.
           </p>
         </motion.div>
         <motion.div ref={ref} initial="hidden" animate={controls} variants={containerVariants} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

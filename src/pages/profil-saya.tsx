@@ -365,7 +365,7 @@ const UserProfilePage = () => {
                         </svg>
                       </div>
                       <div className="ml-3">
-                        <p className="text-sm font-medium text-secondary-800 dark:text-white">Menyelesaikan Latihan Soal UTBK Matematika</p>
+                        <p className="text-sm font-medium text-secondary-800 dark:text-white">Menyelesaikan Latihan Soal SNBT Matematika</p>
                         <p className="text-xs text-secondary-500 dark:text-secondary-400">3 hari yang lalu</p>
                       </div>
                     </div>

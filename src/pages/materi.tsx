@@ -68,7 +68,7 @@ function Materi() {
   useEffect(() => {
     setIsClient(true);
     // Log to make sure data is loaded
-    console.log("utbkMaterials loaded:", Object.keys(utbkMaterialsRef.current).length);
+    console.log("snbtMaterials loaded:", Object.keys(utbkMaterialsRef.current).length);
   }, []);
   
   // Get material categories from utbkMaterials
@@ -93,7 +93,7 @@ function Materi() {
         result.push({
           id: id++,
           title: `${subtopic.title}`,
-          description: `Materi dan panduan tentang ${subtopic.title} untuk persiapan UTBK`,
+          description: `Materi dan panduan tentang ${subtopic.title} untuk persiapan SNBT`,
           type: "pdf",
           size: `${Math.floor(Math.random() * 8) + 1}.${Math.floor(Math.random() * 9)}${Math.floor(Math.random() * 9)} MB`,
           duration: null,
@@ -106,7 +106,7 @@ function Materi() {
           result.push({
             id: id++,
             title: `Tutorial ${subtopic.title}`,
-            description: `Video pembelajaran interaktif tentang ${subtopic.title} untuk persiapan UTBK`,
+            description: `Video pembelajaran interaktif tentang ${subtopic.title} untuk persiapan SNBT`,
             type: "video",
             size: null,
             duration: `${Math.floor(Math.random() * 30) + 10}:${Math.floor(Math.random() * 6)}${Math.floor(Math.random() * 10)}`,
@@ -336,7 +336,7 @@ function Materi() {
   return (
     <>
       <Head>
-        <title>Materi - UTBK Prep</title>
+        <title>Materi - SNBTIn</title>
       </Head>
       
       <section className="py-12 bg-primary-50 dark:bg-primary-900/10">
@@ -351,7 +351,7 @@ function Materi() {
               Materi Pembelajaran
             </h1>
             <p className="text-lg text-secondary-600 dark:text-secondary-400">
-              Akses berbagai materi pembelajaran untuk persiapan UTBK dalam bentuk video, PDF, dan dokumen.
+              Akses berbagai materi pembelajaran untuk persiapan SNBT dalam bentuk video, PDF, dan dokumen.
             </p>
           </motion.div>
         </div>

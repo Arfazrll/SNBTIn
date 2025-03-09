@@ -40,7 +40,7 @@ const TestimonialsSection = () => {
             Kisah Sukses Siswa Kami
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-400">
-            Dengarkan langsung dari siswa yang berhasil masuk ke perguruan tinggi impian mereka dengan UTBK Prep.
+            Dengarkan langsung dari siswa yang berhasil masuk ke perguruan tinggi impian mereka dengan SNBTIn.
           </p>
         </motion.div>
 

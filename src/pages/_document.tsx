@@ -17,21 +17,21 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.ico" />
           
           {/* Meta Tags */}
-          <meta name="description" content="Platform e-learning untuk persiapan UTBK bagi siswa SMA" />
-          <meta name="keywords" content="UTBK, e-learning, persiapan UTBK, SBMPTN, ujian" />
-          <meta name="author" content="Tim UTBK Prep" />
+          <meta name="description" content="Platform e-learning untuk persiapan SNBT bagi siswa SMA" />
+          <meta name="keywords" content="SNBT, e-learning, persiapan SNBT, SNBP, ujian" />
+          <meta name="author" content="Tim SNBTIn" />
           
           {/* Open Graph */}
-          <meta property="og:title" content="UTBK Prep - Platform E-Learning Persiapan UTBK" />
-          <meta property="og:description" content="Platform belajar online yang dirancang khusus untuk membantu siswa SMA menghadapi UTBK dengan percaya diri." />
+          <meta property="og:title" content="SNBTIn - Platform E-Learning Persiapan SNBT" />
+          <meta property="og:description" content="Platform belajar online yang dirancang khusus untuk membantu siswa SMA menghadapi SNBT dengan percaya diri." />
           <meta property="og:image" content="/images/og-image.jpg" />
-          <meta property="og:url" content="https://utbkprep.id" />
+          <meta property="og:url" content="https://snbtin.id" />
           <meta property="og:type" content="website" />
           
           {/* Twitter Card */}
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="UTBK Prep - Platform E-Learning Persiapan UTBK" />
-          <meta name="twitter:description" content="Platform belajar online yang dirancang khusus untuk membantu siswa SMA menghadapi UTBK dengan percaya diri." />
+          <meta name="twitter:title" content="SNBTIn - Platform E-Learning Persiapan SNBT" />
+          <meta name="twitter:description" content="Platform belajar online yang dirancang khusus untuk membantu siswa SMA menghadapi SNBT dengan percaya diri." />
           <meta name="twitter:image" content="/images/og-image.jpg" />
         </Head>
         <body>

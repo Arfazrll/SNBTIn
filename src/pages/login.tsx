@@ -62,7 +62,7 @@ const LoginPage = () => {
         <div className="mx-auto w-full max-w-md">
           {/* Logo */}
           <div className="mb-8 text-center">
-            <h1 className="text-4xl font-bold text-[#4a9fff]">UTBKIn</h1>
+            <h1 className="text-4xl font-bold text-[#4a9fff]">SNBTIn</h1>
           </div>
 
           {/* Form */}
@@ -156,7 +156,7 @@ const LoginPage = () => {
         </div>
         
         <div className="mt-8 text-center text-sm text-white/70">
-          2025 UTBKIn Hak Cipta Dilindungi
+          2025 SNBTIn Hak Cipta Dilindungi
         </div>
       </div>
 
@@ -164,7 +164,7 @@ const LoginPage = () => {
       <div className="hidden md:flex md:w-7/12 bg-cover bg-center relative" style={{ backgroundImage: "url('/login-bg.jpg')" }}>
         <div className="absolute inset-0 bg-black/40 flex flex-col justify-center px-12">
           <h2 className="text-4xl font-bold text-white mb-2">
-            Welcome To <span className="text-[#4a9fff]">UTBKIn</span>
+            Welcome To <span className="text-[#4a9fff]">SNBTIn</span>
           </h2>
           <p className="text-2xl text-white mb-2">
             Platform <span className="text-[#4a9fff]">E-Learning</span> terdepan yang 

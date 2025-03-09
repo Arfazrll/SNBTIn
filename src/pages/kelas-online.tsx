@@ -77,7 +77,7 @@ const KelasOnline: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Kelas Online - UTBK Prep</title>
+        <title>Kelas Online - SNBTIn</title>
       </Head>
       
       <section className="py-12 bg-primary-50 dark:bg-primary-900/10">
@@ -89,10 +89,10 @@ const KelasOnline: React.FC = () => {
             className="text-center max-w-3xl mx-auto"
           >
             <h1 className="text-3xl md:text-4xl font-bold mb-4 text-secondary-900 dark:text-white">
-              Kelas Online UTBKIn
+              Kelas Online SNBTIn
             </h1>
             <p className="text-lg text-secondary-600 dark:text-secondary-400">
-              Pelajari materi UTBK dari pengajar berpengalaman dengan metode pembelajaran yang interaktif.
+              Pelajari materi SNBT dari pengajar berpengalaman dengan metode pembelajaran yang interaktif.
             </p>
           </motion.div>
         </div>

@@ -84,17 +84,17 @@ const EnhancedHeroSection: React.FC = () => {
             <div className="space-y-8">
               <div>
                 <span className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium mb-6 border border-white/10">
-                  #1 Platform Persiapan UTBK di Indonesia
+                  #1 Platform Persiapan SNBT di Indonesia
                 </span>
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 Raih Impian PTN <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-200 filter drop-shadow-sm">Bersama UTBKIn</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-200 filter drop-shadow-sm">Bersama SNBTIn</span>
               </h1>
               
               <p className="text-lg md:text-xl text-white/90 max-w-lg">
-                Platform belajar online yang dirancang khusus untuk membantu siswa SMA menghadapi UTBK dengan percaya diri dan hasil maksimal.
+                Platform belajar online yang dirancang khusus untuk membantu siswa SMA menghadapi SNBT dengan percaya diri dan hasil maksimal.
               </p>
             </div>
             
@@ -105,7 +105,7 @@ const EnhancedHeroSection: React.FC = () => {
                     <div className="absolute inset-0 bg-black/20 z-10 rounded-xl" />
                     <Image
                       src="/download (5).jpeg"
-                      alt="Students studying with UTBK Prep"
+                      alt="Students studying with SNBTIn"
                       fill
                       className="object-cover"
                     />
@@ -136,17 +136,17 @@ const EnhancedHeroSection: React.FC = () => {
           <div className="space-y-8">
             <motion.div variants={itemVariants}>
               <span className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium mb-6 border border-white/10 shadow-lg">
-                #1 Platform Persiapan UTBK di Indonesia
+                #1 Platform Persiapan SNBT di Indonesia
               </span>
             </motion.div>
             
             <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Raih Impian PTN <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-200 filter drop-shadow-sm">Bersama UTBKIn</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-200 filter drop-shadow-sm">Bersama SNBTIn</span>
             </motion.h1>
             
             <motion.p variants={itemVariants} className="text-lg md:text-xl text-white/90 max-w-lg">
-              Platform belajar online yang dirancang khusus untuk membantu siswa SMA menghadapi UTBK dengan percaya diri dan hasil maksimal.
+              Platform belajar online yang dirancang khusus untuk membantu siswa SMA menghadapi SNBT dengan percaya diri dan hasil maksimal.
             </motion.p>
             
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
@@ -265,7 +265,7 @@ const EnhancedHeroSection: React.FC = () => {
                   <div className="absolute inset-0 bg-black/20 z-10 rounded-xl" />
                   <Image
                     src="/download (5).jpeg"
-                    alt="Students studying with UTBK Prep"
+                    alt="Students studying with SNBTIn"
                     fill
                     className="object-cover"
                   />
