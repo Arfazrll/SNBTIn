@@ -1,13 +1,11 @@
-# 🎓 UTBKIn - Platform Persiapan UTBK
+# 🎓 UTBKIn - Platform Persiapan UTBK 2025
 <div align="center">
 
-![UTBKIn Logo](https://via.placeholder.com/200x80?text=UTBKIn)
+
 
 [![Next.js](https://img.shields.io/badge/Next.js-13.4.19-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.1.6-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge)](https://github.com/yourusername/UTBKIn/pulls)
 
 <p align="center">
   <strong>Platform e-learning #1 di Indonesia untuk persiapan UTBK bagi siswa SMA</strong><br>
@@ -449,28 +447,20 @@ Tim pengembang UTBKIn yang berdedikasi:
 <table>
   <tr>
     <td align="center">
-      <img src="https://via.placeholder.com/100x100" width="100px" alt="Syahril Arfian Almazril"/><br />
       <b>Syahril Arfian Almazril</b><br />
       <small>Front End & UI/UX</small><br />
-      <small>NIM: 10303230013</small>
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/100x100" width="100px" alt="Maulana Cahya Magista"/><br />
       <b>Maulana Cahya Magista</b><br />
       <small>Front End & UI/UX</small><br />
-      <small>NIM: 1301223240</small>
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/100x100" width="100x" alt="Stephani Maria Sianturi"/><br />
       <b>Stephani Maria Sianturi</b><br />
       <small>Front End & UI/UX</small><br />
-      <small>NIM: 10305230083</small>
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/100x100" width="100px" alt="Rafiy Fasha Purnomo Putra"/><br />
       <b>Rafiy Fasha Purnomo Putra</b><br />
       <small>Front End & UI/UX</small><br />
-      <small>NIM: 1032230050</small>
     </td>
   </tr>
 </table>
@@ -500,7 +490,5 @@ Tim pengembang UTBKIn yang berdedikasi:
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 © 2025 UTBK Prep. Hak Cipta Dilindungi.
-
-[![Made with ❤️ in Indonesia](https://img.shields.io/badge/Made%20with%20%E2%9D%A4%EF%B8%8F%20in-Indonesia-red?style=for-the-badge)](https://github.com/yourusername/UTBKIn)
 
 </div>
