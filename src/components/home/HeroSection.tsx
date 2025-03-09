@@ -1,57 +1,26 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useAnimation, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { motion } from 'framer-motion';
 import { FiArrowRight, FiBookOpen, FiChevronDown } from 'react-icons/fi';
+import DynamicHeroBackground from '../effects/DynamicHeroBackground';
 
 interface AvatarProps {
   gender: string;
   id: number;
 }
 
-const HeroSection: React.FC = () => {
+const EnhancedHeroSection: React.FC = () => {
   // Add client-side only rendering state
   const [isMounted, setIsMounted] = useState(false);
-  
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2
-  });
-  
-  // State for button hover effect
   const [isHovered, setIsHovered] = useState(false);
   
-  // Fix for white dot in corner
-  useEffect(() => {
-    const style = document.createElement('style');
-    style.textContent = `
-      body::before, body::after, #__next::before, #__next::after {
-        display: none !important;
-        content: none !important;
-      }
-    `;
-    document.head.appendChild(style);
-    
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
-
   // Client-side mounting effect
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
-  // Animation when in view
-  useEffect(() => {
-    if (inView && isMounted) {
-      controls.start('visible');
-    }
-  }, [controls, inView, isMounted]);
 
   // Animation variants
   const containerVariants = {
@@ -87,32 +56,6 @@ const HeroSection: React.FC = () => {
     }
   };
 
-  const glowingVariants = {
-    initial: { opacity: 0.7 },
-    animate: { 
-      opacity: [0.7, 1, 0.7],
-      transition: { 
-        duration: 3,
-        repeat: Infinity,
-        repeatType: "mirror" as const
-      }
-    }
-  };
-  
-  // Mouse move effect for image
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const imageRef = useRef<HTMLDivElement>(null);
-  
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!imageRef.current) return;
-    
-    const { left, top, width, height } = imageRef.current.getBoundingClientRect();
-    const x = (e.clientX - left) / width - 0.5;
-    const y = (e.clientY - top) / height - 0.5;
-    
-    setMousePosition({ x, y });
-  };
-
   const scrollToFeatures = (): void => {
     document.getElementById('features-section')?.scrollIntoView({
       behavior: 'smooth'
@@ -131,28 +74,6 @@ const HeroSection: React.FC = () => {
       }
     }
   };
-
-  // Generate deterministic particles with fixed positions to avoid hydration mismatch
-  const generateParticles = () => {
-    // Create a deterministic array of particles with fixed positions
-    return Array(30).fill(0).map((_, i) => {
-      // Use a deterministic pattern instead of Math.random()
-      const xPos = ((i * 17) % 100).toFixed(2);
-      const yPos = ((i * 23) % 100).toFixed(2);
-      const opacity = (((i * 13) % 50) + 30) / 100;
-      const scale = (((i * 7) % 50) + 50) / 100;
-      
-      // Generate deterministic animation values
-      const yDelta = ((i % 10) - 5).toFixed(2);
-      const xDelta = ((i % 10) - 5).toFixed(2);
-      const duration = 10 + (i % 10);
-      
-      return { id: i, xPos, yPos, opacity, scale, yDelta, xDelta, duration };
-    });
-  };
-  
-  // Create particles once with deterministic values
-  const particles = generateParticles();
 
   // If not mounted on client yet, render a minimal version without animations
   if (!isMounted) {
@@ -175,8 +96,6 @@ const HeroSection: React.FC = () => {
               <p className="text-lg md:text-xl text-white/90 max-w-lg">
                 Platform belajar online yang dirancang khusus untuk membantu siswa SMA menghadapi UTBK dengan percaya diri dan hasil maksimal.
               </p>
-              
-              {/* Basic non-animated UI for server render */}
             </div>
             
             <div className="relative hidden lg:block">
@@ -202,58 +121,28 @@ const HeroSection: React.FC = () => {
 
   // Full component with animations for client-side only
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 to-primary-500 dark:from-primary-900 dark:to-primary-700 text-white py-20 lg:py-28">
-      {/* Enhanced background decorations */}
-      <div className="absolute -bottom-40 -right-40 w-96 h-96 rounded-full bg-primary-400/20 blur-3xl"></div>
-      <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-primary-400/20 blur-3xl"></div>
-      
-      {/* Deterministic particles with fixed positions */}
-      <div className="absolute inset-0 overflow-hidden">
-        {particles.map((particle) => (
-          <motion.div 
-            key={particle.id}
-            initial={{ 
-              x: `${particle.xPos}%`, 
-              y: `${particle.yPos}%`,
-              opacity: particle.opacity,
-              scale: particle.scale
-            }}
-            animate={{ 
-              y: [null, `calc(${particle.yPos}% + ${particle.yDelta}%)`],
-              x: [null, `calc(${particle.xPos}% + ${particle.xDelta}%)`]
-            }}
-            transition={{ 
-              duration: particle.duration,
-              repeat: Infinity,
-              repeatType: "mirror" as const
-            }}
-            className="absolute w-2 h-2 rounded-full bg-white/30"
-          ></motion.div>
-        ))}
-      </div>
-      
-      {/* Improved grid background */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+    <section className="relative overflow-hidden bg-blue-600 text-white py-20 lg:py-32">
+      {/* Advanced Dynamic Background */}
+      <DynamicHeroBackground intensity="medium" />
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          ref={ref}
           initial="hidden"
-          animate={controls}
+          animate="visible"
           variants={containerVariants}
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
         >
           {/* Left column: Content */}
           <div className="space-y-8">
             <motion.div variants={itemVariants}>
-              <span className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium mb-6 border border-white/10 shadow-glow animate-pulse-slow">
+              <span className="inline-block px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium mb-6 border border-white/10 shadow-lg">
                 #1 Platform Persiapan UTBK di Indonesia
               </span>
             </motion.div>
             
             <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Raih Impian PTN <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-200 filter drop-shadow-sm">Bersama UTBK Prep</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-200 filter drop-shadow-sm">Bersama UTBKIn</span>
             </motion.h1>
             
             <motion.p variants={itemVariants} className="text-lg md:text-xl text-white/90 max-w-lg">
@@ -361,18 +250,12 @@ const HeroSection: React.FC = () => {
           <motion.div
             variants={imageVariants}
             className="relative hidden lg:block"
-            ref={imageRef}
-            onMouseMove={handleMouseMove}
           >
             <motion.div 
               variants={floatingVariants}
               initial="initial"
               animate="animate"
               className="relative w-full aspect-square max-w-lg mx-auto"
-              style={{ 
-                transform: `perspective(1000px) rotateY(${mousePosition.x * 5}deg) rotateX(${mousePosition.y * -5}deg)`,
-                transition: "transform 0.1s ease-out"
-              }}
             >
               <motion.div 
                 className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-3 border border-white/20 shadow-2xl"
@@ -416,6 +299,7 @@ const HeroSection: React.FC = () => {
                 </div>
               </motion.div>
               
+              {/* Additional info cards */}
               <motion.div 
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -444,7 +328,6 @@ const HeroSection: React.FC = () => {
                 </div>
               </motion.div>
               
-              {/* Interactive notification element */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -494,72 +377,12 @@ const HeroSection: React.FC = () => {
           onClick={scrollToFeatures}
           className="flex flex-col items-center text-white/80 hover:text-white"
         >
+          <span className="text-sm mb-1">Scroll</span>
           <FiChevronDown size={20} />
         </button>
       </motion.div>
-      
-      {/* Enhanced wave divider with animation */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 1 }}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" className="w-full">
-            <motion.path 
-              fill="currentColor" 
-              fillOpacity="1" 
-              className="text-white dark:text-secondary-900"
-              d="M0,96L48,85.3C96,75,192,53,288,53.3C384,53,480,75,576,80C672,85,768,75,864,64C960,53,1056,43,1152,42.7C1248,43,1344,53,1392,58.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-              animate={{
-                d: [
-                  "M0,96L48,85.3C96,75,192,53,288,53.3C384,53,480,75,576,80C672,85,768,75,864,64C960,53,1056,43,1152,42.7C1248,43,1344,53,1392,58.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                  "M0,96L48,90C96,84,192,72,288,72C384,72,480,84,576,88C672,92,768,88,864,80C960,72,1056,60,1152,60C1248,60,1344,72,1392,78L1440,84L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z",
-                  "M0,96L48,85.3C96,75,192,53,288,53.3C384,53,480,75,576,80C672,85,768,75,864,64C960,53,1056,43,1152,42.7C1248,43,1344,53,1392,58.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                ]
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-            </motion.path>
-          </svg>
-        </motion.div>
-      </div>
-      
-      {/* Enhanced animated elements for visual interest */}
-      <motion.div 
-        className="absolute top-20 right-20 w-20 h-20 rounded-full bg-yellow-300/10 blur-xl"
-        variants={glowingVariants}
-        initial="initial"
-        animate="animate"
-      ></motion.div>
-      
-      <motion.div 
-        className="absolute bottom-40 left-20 w-16 h-16 rounded-full bg-blue-300/10 blur-xl"
-        variants={glowingVariants}
-        initial="initial"
-        animate="animate"
-        transition={{ delay: 1 }}
-      ></motion.div>
-      
-      {/* New decorative element */}
-      <motion.div 
-        className="absolute top-40 left-1/3 w-12 h-12 rounded-full bg-purple-300/10 blur-xl"
-        animate={{ 
-          scale: [1, 1.2, 1],
-          opacity: [0.5, 0.8, 0.5]
-        }}
-        transition={{ 
-          duration: 4,
-          repeat: Infinity,
-          repeatType: "reverse"
-        }}
-      ></motion.div>
     </section>
   );
 };
 
-export default HeroSection;
+export default EnhancedHeroSection;

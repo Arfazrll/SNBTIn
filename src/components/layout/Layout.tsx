@@ -1,8 +1,8 @@
-import { useEffect, ReactNode } from 'react';
-import { useRouter } from 'next/router';
-import { motion, AnimatePresence } from 'framer-motion';
-import Navbar from './Navbar';
-import Footer from './Footer';
+'use client'; // Keep this if using App Router
+
+import { useEffect, ReactNode, useState } from 'react';
+import { useRouter } from 'next/router'; // For Pages Router
+// import { usePathname } from 'next/navigation'; // Uncomment for App Router
 
 interface LayoutProps {
   children: ReactNode;
@@ -10,38 +10,70 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const router = useRouter();
+  // const pathname = usePathname(); // Uncomment for App Router
+  const [mounted, setMounted] = useState(false);
+  
+  // Handle client-side mounting
+  useEffect(() => {
+    setMounted(true);
+    
+    // Fix for white dot issue
+    const style = document.createElement('style');
+    style.textContent = `
+      body::before, body::after, #__next::before, #__next::after {
+        display: none !important;
+        content: none !important;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      if (document.head.contains(style)) {
+        document.head.removeChild(style);
+      }
+    };
+  }, []);
 
   // Scroll to top on page change
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [router.pathname]);
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
+  }, [router.pathname]); // or [pathname] for App Router
+
+  // Import Navbar and Footer dynamically to avoid hydration issues
+  const [NavbarComponent, setNavbarComponent] = useState<React.ComponentType | null>(null);
+  const [FooterComponent, setFooterComponent] = useState<React.ComponentType | null>(null);
+
+  useEffect(() => {
+    const loadComponents = async () => {
+      try {
+        // Dynamic imports
+        const NavbarModule = await import('./Navbar');
+        const FooterModule = await import('./Footer');
+        
+        setNavbarComponent(() => NavbarModule.default);
+        setFooterComponent(() => FooterModule.default);
+      } catch (error) {
+        console.error('Error loading components:', error);
+      }
+    };
+    
+    loadComponents();
+  }, []);
+
+  // Prevent flash of unstyled content
+  if (!mounted) {
+    return <div className="min-h-screen bg-white dark:bg-secondary-900"></div>;
+  }
 
   return (
-    <div className="flex flex-col min-h-screen bg-white dark:bg-secondary-900 transition-colors duration-300">
-      {/* Fix untuk titik putih */}
-      <div className="dot-fix"></div>
-
-      {/* Background animation with CSS only */}
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-primary-500/10 dark:bg-primary-600/10 rounded-full filter blur-5xl opacity-30 animate-blob"></div>
-        <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-blue-500/10 dark:bg-blue-600/10 rounded-full filter blur-5xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 right-1/4 w-1/4 h-1/4 bg-purple-500/10 dark:bg-purple-600/10 rounded-full filter blur-5xl opacity-30 animate-blob animation-delay-4000"></div>
-      </div>
-      
-      <Navbar />
-      <AnimatePresence mode="wait">
-        <motion.main
-          key={router.pathname}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-          className="flex-grow"
-        >
-          {children}
-        </motion.main>
-      </AnimatePresence>
-      <Footer />
+    <div className="flex flex-col min-h-screen bg-white dark:bg-secondary-900 transition-colors duration-300 overflow-x-hidden">
+      {NavbarComponent && <NavbarComponent />}
+      <main className="flex-grow relative">
+        {children}
+      </main>
+      {FooterComponent && <FooterComponent />}
     </div>
   );
 };

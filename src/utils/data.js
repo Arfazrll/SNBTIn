@@ -15,7 +15,7 @@ export const teamMembers = [
       linkedin: "https://linkedin.com/in/anggota1",
       github: "https://github.com/anggota1",
     },
-    image: "/images/team/member1.jpg"
+    image: "/Azrll2.jpg"
   },
   {
     id: 2,
@@ -40,7 +40,7 @@ export const teamMembers = [
     nim: "103052300083",
     email: "stemarsi2004@gmail.com",
     phone: "+62-73659036561",
-    address: "",
+    address: "Bandung, Indonesia",
     about: "",
     social: {
       instagram: "https://instagram.com/anggota3",
@@ -52,11 +52,11 @@ export const teamMembers = [
   {
     id: 4,
     name: "Rafly Fasha Purnomo Putra",
-    role: "",
+    role: "Front End & UI/UX",
     nim: "1103223050",
     email: "raflyfasha30@gmail",
-    phone: "=62-63739875231",
-    address: "",
+    phone: "+62-63739875231",
+    address: "Bandung, Indonesia",
     about: "",
     social: {
       instagram: "https://instagram.com/anggota4",
