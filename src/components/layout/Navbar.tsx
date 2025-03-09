@@ -28,7 +28,7 @@ const Navbar = () => {
     { name: 'Kelas Online', path: '/kelas-online' },
     { name: 'Materi', path: '/materi' },
     { name: 'Forum Diskusi', path: '/forum-diskusi' },
-    { name: 'Profil', path: '/profil' },
+    { name: 'Profil', path: '/profil-saya' },
   ];
 
   // Check if user is logged in on component mount and listen for login/logout events
@@ -216,7 +216,7 @@ const Navbar = () => {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Link href="/profil" legacyBehavior>
+                      <Link href="/profil-saya" legacyBehavior>
                         <a className="flex items-center space-x-2 px-4 py-2 text-sm text-secondary-700 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-700">
                           <FiUser size={16} />
                           <span>Profil Saya</span>
