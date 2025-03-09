@@ -19,9 +19,9 @@ const navigationLinks = [
 ];
 
 const contactInfo = [
-  { icon: FiMail, label: 'info@utbkin.id', href: 'mailto:info@utbkin.id' },
+  { icon: FiMail, label: 'info@snbtin.id', href: 'mailto:info@snbtin.id' },
   { icon: FiPhone, label: '+62 812-3456-789', href: 'tel:+628123456789' },
-  { icon: FiMapPin, label: 'Jl. Bandung bubat no 28' },
+  { icon: FiMapPin, label: 'Jl. Telekomunikasi No. 1, Bandung' },
 ];
 
 const itemVariants: Variants = {
@@ -48,9 +48,9 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {}
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ duration: 0.5 }} variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-bold text-secondary-900 dark:text-white">UTBK In</h3>
+            <h3 className="text-xl font-bold text-secondary-900 dark:text-white">SNBTIn</h3>
             <p className="text-secondary-600 dark:text-secondary-400">
-              Platform e-learning untuk persiapan UTBK bagi siswa SMA yang ingin melanjutkan ke perguruan tinggi negeri.
+              Platform e-learning untuk persiapan SNBT bagi siswa SMA yang ingin melanjutkan ke perguruan tinggi negeri.
             </p>
             <div className="flex space-x-4 pt-4">
               {socialLinks.map(({ icon: Icon, label, href }) => (
@@ -107,7 +107,7 @@ const Footer: React.FC = () => {
                 Berlangganan
               </h3>
               <p className="text-secondary-600 dark:text-secondary-400">
-                Dapatkan tips dan informasi terbaru tentang persiapan UTBK.
+                Dapatkan tips dan informasi terbaru tentang persiapan SNBT.
               </p>
 
               <form onSubmit={handleSubmit} className="mt-4 space-y-3 relative">

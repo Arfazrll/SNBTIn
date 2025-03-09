@@ -74,10 +74,10 @@ const TeamSection: React.FC = () => {
           className="mb-10 text-center max-w-2xl mx-auto"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-secondary-900 dark:text-white">
-            Tim Pengembang UTBKIn
+            Tim Pengembang SNBTIn
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-400">
-            Kenali tim kami yang bekerja keras untuk membantu kamu mempersiapkan UTBK dengan sebaik-baiknya.
+            Kenali tim kami yang bekerja keras untuk membantu kamu mempersiapkan SNBT dengan sebaik-baiknya.
           </p>
         </motion.div>
 

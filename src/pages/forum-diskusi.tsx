@@ -33,7 +33,7 @@ export default function ForumDiskusi() {
   const forumTopics: ForumTopic[] = [
     {
       id: 1,
-      title: "Cara efektif mempersiapkan TPS UTBK?",
+      title: "Cara efektif mempersiapkan TPS SNBT?",
       category: "TPS",
       author: "Ahmad Farhan",
       authorImg: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
@@ -42,11 +42,11 @@ export default function ForumDiskusi() {
       likes: 47,
       lastActivity: "3 jam yang lalu",
       isSolved: true,
-      excerpt: "Saya ingin menanyakan tentang strategi belajar yang efektif untuk persiapan TPS UTBK. Bagaimana cara mengatur waktu belajar dan materi apa saja yang harus difokuskan?",
+      excerpt: "Saya ingin menanyakan tentang strategi belajar yang efektif untuk persiapan TPS SNBT. Bagaimana cara mengatur waktu belajar dan materi apa saja yang harus difokuskan?",
     },
     {
       id: 2,
-      title: "Perbedaan antara SNBT dan UTBK?",
+      title: "Perbedaan antara SNBT dan SNBT?",
       category: "Umum",
       author: "Sinta Dewi",
       authorImg: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
@@ -59,7 +59,7 @@ export default function ForumDiskusi() {
     },
     {
       id: 3,
-      title: "Rumus matematika yang sering keluar di UTBK",
+      title: "Rumus matematika yang sering keluar di SNBT",
       category: "Matematika",
       author: "Budi Santoso",
       authorImg: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
@@ -68,7 +68,7 @@ export default function ForumDiskusi() {
       likes: 78,
       lastActivity: "1 hari yang lalu",
       isSolved: true,
-      excerpt: "Halo teman-teman, saya ingin tahu rumus-rumus matematika apa saja yang sering keluar dalam soal UTBK? Fokus pada materi apa yang perlu diprioritaskan?",
+      excerpt: "Halo teman-teman, saya ingin tahu rumus-rumus matematika apa saja yang sering keluar dalam soal SNBT? Fokus pada materi apa yang perlu diprioritaskan?",
     },
     {
       id: 4,
@@ -85,7 +85,7 @@ export default function ForumDiskusi() {
     },
     {
       id: 5,
-      title: "Jadwal UTBK 2023 dan persiapannya",
+      title: "Jadwal SNBT 2023 dan persiapannya",
       category: "Umum",
       author: "Rudi Hermawan",
       authorImg: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
@@ -94,7 +94,7 @@ export default function ForumDiskusi() {
       likes: 53,
       lastActivity: "3 hari yang lalu",
       isSolved: true,
-      excerpt: "Kapan jadwal UTBK 2023 akan dimulai? Bagaimana tahapan persiapan yang optimal mulai dari sekarang hingga hari H ujian?",
+      excerpt: "Kapan jadwal SNBT 2023 akan dimulai? Bagaimana tahapan persiapan yang optimal mulai dari sekarang hingga hari H ujian?",
     },
   ];
   
@@ -148,7 +148,7 @@ export default function ForumDiskusi() {
   return (
     <>
       <Head>
-        <title>Forum Diskusi - UTBK Prep</title>
+        <title>Forum Diskusi - SNBTIn</title>
       </Head>
       
       <section className="py-12 bg-primary-50 dark:bg-primary-900/10">
@@ -163,7 +163,7 @@ export default function ForumDiskusi() {
               Forum Diskusi
             </h1>
             <p className="text-lg text-secondary-600 dark:text-secondary-400">
-              Diskusikan pertanyaan seputar UTBK dan dapatkan jawaban dari pengajar dan sesama siswa.
+              Diskusikan pertanyaan seputar SNBT dan dapatkan jawaban dari pengajar dan sesama siswa.
             </p>
           </motion.div>
         </div>

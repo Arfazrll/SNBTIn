@@ -26,7 +26,7 @@ export default function Profil() {
   return (
     <>
       <Head>
-        <title>Profil Tim - UTBKIn</title>
+        <title>Profil Tim - SNBTIn</title>
       </Head>
       
       
@@ -44,10 +44,10 @@ export default function Profil() {
           >
             <motion.div variants={itemVariants} className="text-center mb-12">
               <h2 className="text-3xl font-bold text-secondary-900 dark:text-white mb-4">
-                Tentang UTBKIn
+                Tentang SNBTIn
               </h2>
               <p className="text-lg text-secondary-600 dark:text-secondary-400">
-                Kami adalah tim yang berdedikasi untuk membantu siswa Indonesia mempersiapkan diri menghadapi UTBK dengan materi berkualitas.
+                Kami adalah tim yang berdedikasi untuk membantu siswa Indonesia mempersiapkan diri menghadapi SNBT dengan materi berkualitas.
               </p>
             </motion.div>
             
@@ -66,7 +66,7 @@ export default function Profil() {
                   Misi Kami
                 </h3>
                 <ul className="list-disc pl-5 text-secondary-600 dark:text-secondary-400 space-y-2">
-                  <li>Menyediakan materi pembelajaran UTBK yang komprehensif dan mudah dipahami.</li>
+                  <li>Menyediakan materi pembelajaran SNBT yang komprehensif dan mudah dipahami.</li>
                   <li>Mengembangkan metode belajar yang interaktif dan menyenangkan.</li>
                   <li>Membangun komunitas belajar yang supportif antar siswa SMA seluruh Indonesia.</li>
                   <li>Memberikan akses pendidikan berkualitas dengan harga terjangkau.</li>

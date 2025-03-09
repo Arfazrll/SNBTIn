@@ -124,8 +124,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>UTBK Prep - Platform E-Learning Persiapan UTBK</title>
-        <meta name="description" content="Persiapkan UTBK dengan materi berkualitas, latihan soal, dan bimbingan dari pengajar expert" />
+        <title>SNBTIn - Platform E-Learning Persiapan SNBT</title>
+        <meta name="description" content="Persiapkan SNBT dengan materi berkualitas, latihan soal, dan bimbingan dari pengajar expert" />
       </Head>
 
       {/* Animation Controls - hanya tampil jika showControls = true */}
