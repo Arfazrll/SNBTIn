@@ -62,7 +62,10 @@ const LoginPage = () => {
         <div className="mx-auto w-full max-w-md">
           {/* Logo */}
           <div className="mb-8 text-center">
-            <h1 className="text-4xl font-bold text-[#4a9fff]">UTBKIn</h1>
+            <h1 className="text-4xl font-bold">
+              <span className="text-[#4a9fff]">SNBT</span>
+              <span className="text-[#ffffff]">In</span>
+            </h1>
           </div>
 
           {/* Form */}
@@ -146,25 +149,26 @@ const LoginPage = () => {
             
             <div className="mt-4 flex justify-center space-x-4">
               <button className="p-2 rounded-full bg-white hover:bg-gray-100 transition-colors duration-200">
-                <Image src="/google-icon.png" alt="Google" width={24} height={24} className="rounded-full" />
+                <Image src="/googlelogo.png" alt="Google" width={24} height={24} className="rounded-full" />
               </button>
               <button className="p-2 rounded-full bg-white hover:bg-gray-100 transition-colors duration-200">
-                <Image src="/facebook-icon.png" alt="Facebook" width={24} height={24} className="rounded-full" />
+                <Image src="/Facebook-logo.png" alt="Facebook" width={24} height={24} className="rounded-full" />
               </button>
             </div>
           </div>
         </div>
         
         <div className="mt-8 text-center text-sm text-white/70">
-          2025 UTBKIn Hak Cipta Dilindungi
+          2025 SNBTIn Hak Cipta Dilindungi
         </div>
       </div>
 
       {/* Welcome Section (Right) */}
       <div className="hidden md:flex md:w-7/12 bg-cover bg-center relative" style={{ backgroundImage: "url('/login-bg.jpg')" }}>
         <div className="absolute inset-0 bg-black/40 flex flex-col justify-center px-12">
-          <h2 className="text-4xl font-bold text-white mb-2">
-            Welcome To <span className="text-[#4a9fff]">UTBKIn</span>
+          <h2 className="text-4xl font-bold">
+              <span className="text-[#4a9fff]">SNBT</span>
+              <span className="text-[#ffffff]">In</span>
           </h2>
           <p className="text-2xl text-white mb-2">
             Platform <span className="text-[#4a9fff]">E-Learning</span> terdepan yang 
