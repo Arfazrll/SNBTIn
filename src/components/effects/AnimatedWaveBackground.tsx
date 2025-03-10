@@ -54,7 +54,7 @@ const AnimatedWaveBackground: React.FC = () => {
         ctx.fill();
       });
 
-      time += 0.01;
+      time += 1000;
       animationFrameId = requestAnimationFrame(animate);
     };
 

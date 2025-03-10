@@ -230,18 +230,12 @@ cd SNBTIn
 npm install
 ```
 
-4. Setup environment variables
-```bash
-cp .env.example .env.local
-# Edit .env.local file with your configurations
-```
-
-5. Run development server
+4. Run development server
 ```bash
 npm run dev
 ```
 
-6. Buka [http://localhost:3000](http://localhost:3000) di browser Anda
+5. Buka [http://localhost:3000](http://localhost:3000) di browser Anda
 
 ---
 
