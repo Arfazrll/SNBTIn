@@ -6,7 +6,7 @@ import {
 } from 'react-icons/fi';
 import { IconType } from 'react-icons'; // Import IconType from the base package
 
-// Define proper TypeScript interfaces
+
 interface FeatureCardProps {
   icon: 'book' | 'video' | 'users' | 'award' | 'activity' | 'clock' | 'target' | 'zap' | 'layers';
   title: string;
@@ -14,12 +14,12 @@ interface FeatureCardProps {
   colorClass?: 'primary' | 'blue' | 'green' | 'purple' | 'red' | 'orange';
 }
 
-// Define types for icon mapping
+
 type IconMap = {
   [key: string]: IconType;
 }
 
-// Define types for color class mapping
+
 interface ColorClasses {
   light: string;
   icon: string;
@@ -37,7 +37,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   description, 
   colorClass = 'primary' 
 }) => {
-  // Map icon name to icon component
+  
   const IconComponent = useMemo(() => {
     const icons: IconMap = {
       book: FiBookOpen,
@@ -53,7 +53,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
     return icons[icon] || FiBookOpen;
   }, [icon]);
 
-  // Map color class to tailwind classes
+  
   const colorClasses = useMemo(() => {
     const colors: ColorMap = {
       primary: {

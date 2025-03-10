@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { FiStar } from 'react-icons/fi';
 import React from 'react';
 
-// Define interface for component props
+
 interface TestimonialCardProps {
   avatar: string;
   name: string;

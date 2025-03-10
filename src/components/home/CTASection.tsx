@@ -1,5 +1,5 @@
 // src/components/home/CTASection.jsx (or .tsx)
-'use client'; // Tambahkan jika menggunakan App Router
+'use client'; 
 
 import Link from 'next/link';
 

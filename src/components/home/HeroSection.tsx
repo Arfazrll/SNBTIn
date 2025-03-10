@@ -13,16 +13,16 @@ interface AvatarProps {
 }
 
 const EnhancedHeroSection: React.FC = () => {
-  // Add client-side only rendering state
+
   const [isMounted, setIsMounted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   
-  // Client-side mounting effect
+  
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // Animation variants
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -62,7 +62,7 @@ const EnhancedHeroSection: React.FC = () => {
     });
   };
   
-  // Bouncing arrow animation
+  
   const bounceVariants = {
     initial: { y: 0 },
     animate: {
@@ -75,7 +75,7 @@ const EnhancedHeroSection: React.FC = () => {
     }
   };
 
-  // If not mounted on client yet, render a minimal version without animations
+  
   if (!isMounted) {
     return (
       <section className="relative overflow-hidden bg-gradient-to-br from-primary-700 to-primary-500 dark:from-primary-900 dark:to-primary-700 text-white py-20 lg:py-28">
@@ -104,7 +104,7 @@ const EnhancedHeroSection: React.FC = () => {
                   <div className="relative w-full h-full bg-primary-400/10 rounded-xl overflow-hidden">
                     <div className="absolute inset-0 bg-black/20 z-10 rounded-xl" />
                     <Image
-                      src="/download (5).jpeg"
+                      src="/image.png"
                       alt="Students studying with SNBTIn"
                       fill
                       className="object-cover"
@@ -119,7 +119,7 @@ const EnhancedHeroSection: React.FC = () => {
     );
   }
 
-  // Full component with animations for client-side only
+  
   return (
     <section className="relative overflow-hidden bg-blue-600 text-white py-20 lg:py-32">
       {/* Advanced Dynamic Background */}
