@@ -1,4 +1,4 @@
-# 🎓 UTBKIn - Platform Persiapan UTBK 2025
+# 🎓 SNBTIn - Platform Persiapan SNBT 2025
 <div align="center">
 
 
@@ -8,7 +8,7 @@
 [![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 
 <p align="center">
-  <strong>Platform e-learning #1 di Indonesia untuk persiapan UTBK bagi siswa SMA</strong><br>
+  <strong>Platform e-learning #1 di Indonesia untuk persiapan SNBT bagi siswa SMA</strong><br>
   Membantu siswa meraih impian masuk perguruan tinggi negeri terbaik dengan percaya diri dan hasil maksimal
 </p>
 </div>
@@ -39,7 +39,7 @@
 ---
 
 ## 🌟 Overview
-**UTBKIn** adalah platform persiapan UTBK (Ujian Tulis Berbasis Komputer) terpercaya yang dirancang khusus untuk siswa SMA di Indonesia. Platform ini menyediakan ekosistem pembelajaran komprehensif dengan materi berkualitas, latihan soal, forum diskusi, dan fitur-fitur interaktif yang membantu siswa mempersiapkan diri secara optimal untuk UTBK guna melanjutkan pendidikan ke perguruan tinggi negeri impian mereka.
+**SNBTIn** adalah platform persiapan SNBT (Seleksi Nasional Berbasis Tes) terpercaya yang dirancang khusus untuk siswa SMA di Indonesia. Platform ini menyediakan ekosistem pembelajaran komprehensif dengan materi berkualitas, latihan soal, forum diskusi, dan fitur-fitur interaktif yang membantu siswa mempersiapkan diri secara optimal untuk SNBT guna melanjutkan pendidikan ke perguruan tinggi negeri impian mereka.
 
 <details>
 <summary>📈 Statistik Platform</summary>
@@ -58,7 +58,7 @@
   <tr>
     <td>
       <h3>📚 Materi Lengkap</h3>
-      <p>Materi pembelajaran komprehensif untuk semua mata pelajaran UTBK dengan format video, PDF, dan dokumen interaktif.</p>
+      <p>Materi pembelajaran komprehensif untuk semua mata pelajaran SNBT dengan format video, PDF, dan dokumen interaktif.</p>
     </td>
     <td>
       <h3>🎥 Video Interaktif</h3>
@@ -82,7 +82,7 @@
     </td>
     <td>
       <h3>🎯 Tryout Berkala</h3>
-      <p>Simulasi UTBK secara berkala dengan soal-soal terbaru untuk mengukur kesiapan menghadapi ujian sesungguhnya.</p>
+      <p>Simulasi SNBT secara berkala dengan soal-soal terbaru untuk mengukur kesiapan menghadapi ujian sesungguhnya.</p>
     </td>
   </tr>
   <tr>
@@ -137,7 +137,7 @@
 
 ## 🚀 Project Structure
 ```
-UTBKIN/
+SNBTIn/
 ├── .next/                      # Next.js build output
 ├── node_modules/               # Dependencies
 ├── public/                     # Static assets
@@ -207,7 +207,7 @@ UTBKIN/
 ---
 
 ## ⚙️ Installation & Setup
-Ikuti langkah-langkah berikut untuk menginstall dan menjalankan UTBKIn secara lokal:
+Ikuti langkah-langkah berikut untuk menginstall dan menjalankan SNBTIn secara lokal:
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/en/) (v14.0.0 or higher)
@@ -217,12 +217,12 @@ Ikuti langkah-langkah berikut untuk menginstall dan menjalankan UTBKIn secara lo
 ### Installation
 1. Clone repository
 ```bash
-git clone https://github.com/yourusername/UTBKIn.git
+git clone https://github.com/yourusername/SNBTIn.git
 ```
 
 2. Pindah ke direktori project
 ```bash
-cd UTBKIn
+cd SNBTIn
 ```
 
 3. Install dependencies
@@ -268,17 +268,17 @@ npm run dev
 | Page | Deskripsi | Path |
 |------|-----------|------|
 | **Homepage** | Landing page utama dengan hero section, fitur, dan testimonial. | `/` |
-| **Kelas Online** | Halaman untuk menjelajahi kelas UTBK yang tersedia. | `/kelas-online` |
-| **Materi** | Halaman untuk mengakses berbagai materi pembelajaran UTBK. | `/materi` |
+| **Kelas Online** | Halaman untuk menjelajahi kelas SNBT yang tersedia. | `/kelas-online` |
+| **Materi** | Halaman untuk mengakses berbagai materi pembelajaran SNBT. | `/materi` |
 | **Forum Diskusi** | Platform diskusi interaktif untuk siswa dan pengajar. | `/forum-diskusi` |
-| **Profil Tim** | Informasi tentang tim pengembang UTBKIn. | `/profil` |
+| **Profil Tim** | Informasi tentang tim pengembang SNBTIn. | `/profil` |
 | **Login** | Halaman untuk login ke platform. | `/login` |
 | **Profil Saya** | Halaman profil pengguna setelah login. | `/profil-saya` |
 
 ---
 
 ## 🧩 Components
-UTBKIn dibangun dengan struktur komponen modular untuk memudahkan pengembangan dan maintenance.
+SNBTIn dibangun dengan struktur komponen modular untuk memudahkan pengembangan dan maintenance.
 
 ### Components Features
 <details>
@@ -355,7 +355,7 @@ Komponen visual effects untuk meningkatkan UX dan estetika platform.
 ---
 
 ## 📊 Platform Statistics
-Beberapa data tentang platform UTBKIn:
+Beberapa data tentang platform SNBTIn:
 
 <div align="center">
 
@@ -441,7 +441,7 @@ Panduan untuk deployment aplikasi (inferred).
 ---
 
 ## 👥 Team
-Tim pengembang UTBKIn yang berdedikasi:
+Tim pengembang SNBTIn yang berdedikasi:
 
 <div align="center">
 <table>
@@ -471,14 +471,14 @@ Tim pengembang UTBKIn yang berdedikasi:
 ## 📞 Contact
 <div align="center">
 
-📧 **Email**: info@utbkprep.id  
+📧 **Email**: info@snbtprep.id  
 📞 **Telepon**: +62 812-3456-789  
 📍 **Alamat**: Jl. Bandung bubat no 28  
 
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/utbkin)
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/utbkin)
-[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/utbkin)
-[![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://facebook.com/utbkin)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/snbtin)
+[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/snbtin)
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/snbtin)
+[![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://facebook.com/snbtin)
 
 </div>
 
@@ -489,6 +489,6 @@ Tim pengembang UTBKIn yang berdedikasi:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-© 2025 UTBK Prep. Hak Cipta Dilindungi.
+© 2025 SNBT Prep. Hak Cipta Dilindungi.
 
 </div>
