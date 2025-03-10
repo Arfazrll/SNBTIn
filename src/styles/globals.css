@@ -914,3 +914,53 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
+
+/* CSS untuk navbar scroll hide/show */
+header {
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+header.scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dark header.scrolled {
+  background-color: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Footer separator */
+.footer-separator {
+  position: relative;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    rgba(59, 130, 246, 0) 0%, 
+    rgba(59, 130, 246, 0.7) 50%, 
+    rgba(59, 130, 246, 0) 100%);
+  opacity: 0.5;
+  overflow: hidden;
+}
+
+.footer-separator:before {
+  content: '';
+  position: absolute;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.8) 50%, 
+    rgba(255, 255, 255, 0) 100%);
+  animation: footerShine 5s infinite;
+}
+
+@keyframes footerShine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}

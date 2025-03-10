@@ -44,6 +44,9 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-white dark:bg-secondary-900 border-t border-secondary-200 dark:border-secondary-800 transition-colors duration-300">
+      {/* Footer separator - ditambahkan di sini */}
+      <div className="footer-separator"></div>
+      
       <div className="container mx-auto px-4 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {}
