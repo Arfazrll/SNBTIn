@@ -58,7 +58,7 @@ const LoginPage = () => {
   return (
     <div className="flex min-h-screen">
       {/* Login Form Section (Left) */}
-      <div className="w-full md:w-5/12 bg-[#102548] flex flex-col justify-between p-8">
+      <div className="w-full md:w-5/12 bg-[#102548] flex flex-col justify-between p-8 rounded-r-xl">
         <div className="mx-auto w-full max-w-md">
           {/* Logo */}
           <div className="mb-8 text-center">
@@ -92,7 +92,7 @@ const LoginPage = () => {
                 className="w-full px-4 py-3 rounded-md bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            
+
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -171,15 +171,19 @@ const LoginPage = () => {
       </div>
 
       {/* Welcome Section (Right) */}
-      <div className="hidden md:flex md:w-7/12 bg-cover bg-center relative" style={{ backgroundImage: "url('/login-bg.jpg')" }}>
-        <div className="absolute inset-0 bg-black/40 flex flex-col justify-center px-12">
+      <div className="relative md:flex md:w-7/12 relative"
+        style={{
+          backgroundImage: "url('/bukubege.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "right-center",
+          backgroundRepeat: "no-repeat"
+        }}
+      >
+      <div className="absolute inset-0 bg-black/40 flex flex-col justify-center px-12">
 
-          <h2 className="text-4xl font-bold">
-              <span className="text-[#4a9fff]">SNBT</span>
-              <span className="text-[#ffffff]">In</span>
-            </h2>
           <h2 className="text-4xl font-bold text-white mb-2">
-            Welcome To <span className="text-[#4a9fff]">SNBTIn</span>
+            Welcome To <span className="text-[#4a9fff]">SNBT</span>
+            <span className="text-[#ffffff]">In</span>
           </h2>
           <p className="text-2xl text-white mb-2">
             Platform <span className="text-[#4a9fff]">E-Learning</span> terdepan yang 
