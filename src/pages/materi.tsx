@@ -9,7 +9,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React from 'react';
 
-// Define TypeScript interfaces for your data structures
+
 interface SubTopic {
   title: string;
   items: string[];
@@ -42,7 +42,7 @@ interface ExpandedTopics {
   [key: string]: boolean;
 }
 
-// Import BadgeVariant type from your Badge component or define it here
+
 type BadgeVariant = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info';
 
 interface TypeBadgeConfig {
@@ -57,27 +57,26 @@ function Materi() {
   const [expandedTopics, setExpandedTopics] = useState<ExpandedTopics>({});
   const [isClient, setIsClient] = useState(false);
   
-  // Ensure utbkMaterials is properly typed
+  
   const typedUtbkMaterials = utbkMaterials as UTBKMaterials;
   
-  // Use useRef to store a reference to typedUtbkMaterials
-  // useRef doesn't trigger dependency checks like useState or useMemo
+  
   const utbkMaterialsRef = React.useRef(typedUtbkMaterials);
   
-  // Set isClient to true after component is mounted
+ 
   useEffect(() => {
     setIsClient(true);
-    // Log to make sure data is loaded
+ 
     console.log("snbtMaterials loaded:", Object.keys(utbkMaterialsRef.current).length);
   }, []);
   
-  // Get material categories from utbkMaterials
+
   const materialCategories = isClient ? Object.keys(typedUtbkMaterials).map(key => ({
     id: key,
     name: typedUtbkMaterials[key].title
   })) : [];
   
-  // Generate materials from utbkMaterials
+  
   const generateMaterials = (): Material[] => {
     if (!isClient) return [];
     
@@ -87,9 +86,9 @@ function Materi() {
     Object.keys(typedUtbkMaterials).forEach(key => {
       const category = typedUtbkMaterials[key];
       
-      // Add material for each subtopic
+      
       category.subtopics.forEach((subtopic: SubTopic) => {
-        // Add PDF for subtopic
+        
         result.push({
           id: id++,
           title: `${subtopic.title}`,
@@ -101,7 +100,7 @@ function Materi() {
           thumbnail: `https://source.unsplash.com/random/800x500?${encodeURIComponent(category.title.toLowerCase())}`,
         });
         
-        // Add video for some subtopics
+       
         if (Math.random() > 0.6) {
           result.push({
             id: id++,
@@ -120,31 +119,31 @@ function Materi() {
     return result;
   };
   
-  // Generate materials from utbkMaterials structure
+
   const allMaterials = isClient ? generateMaterials() : [];
   
-  // Filter materials based on active tab
+  
   const filteredMaterials = activeTab === 'semua' 
     ? allMaterials 
     : allMaterials.filter(material => {
-        // Filter based on category matching active tab ID
+        
         const categoryTitle = typedUtbkMaterials[activeTab]?.title;
         return material.subject === categoryTitle;
       });
   
-  // Badge config for material types
+  
   const typeBadgeConfig: Record<string, TypeBadgeConfig> = {
     pdf: { icon: <FiFileText />, color: 'danger', label: 'PDF' },
     video: { icon: <FiVideo />, color: 'primary', label: 'Video' },
     document: { icon: <FiBook />, color: 'info', label: 'Dokumen' },
   };
   
-  // Toggle expanded section for material structure
+  
   const toggleSection = (sectionId: string) => {
     setExpandedSection(expandedSection === sectionId ? null : sectionId);
   };
   
-  // Toggle expanded topic in section
+
   const toggleTopic = (sectionId: string, topicIndex: number) => {
     const key = `${sectionId}-${topicIndex}`;
     setExpandedTopics(prev => ({
@@ -153,7 +152,7 @@ function Materi() {
     }));
   };
   
-  // Animation variants
+ 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -173,13 +172,13 @@ function Materi() {
     }
   };
   
-  // Render Material Structure
+
   const renderMateriStructure = () => {
     if (!isClient) {
       return <div className="text-center py-8">Loading...</div>;
     }
     
-    // For tab "semua", show material structure
+
     if (activeTab === 'semua') {
       return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -254,7 +253,7 @@ function Materi() {
       );
     }
     
-    // Show specific material for tabs other than 'semua'
+   
     return (
       <motion.div
         initial="hidden"
@@ -398,5 +397,5 @@ function Materi() {
   );
 }
 
-// Use dynamic import with SSR disabled temporarily for debugging
+
 export default dynamic(() => Promise.resolve(Materi), { ssr: false });

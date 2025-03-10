@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiUser, FiMail, FiPhone, FiCalendar, FiMapPin, FiEdit2, FiSave } from 'react-icons/fi';
 import Image from 'next/image';
 
-// Interface untuk data pengguna
+
 interface User {
   name: string;
   email: string;
@@ -27,7 +27,7 @@ const UserProfilePage = () => {
   const [activeTab, setActiveTab] = useState('personal');
 
   useEffect(() => {
-    // Ambil data pengguna dari localStorage
+    
     const fetchUserData = () => {
       setIsLoading(true);
       const storedUser = localStorage.getItem('user');
@@ -36,7 +36,7 @@ const UserProfilePage = () => {
         try {
           const parsedUser = JSON.parse(storedUser) as User;
           
-          // Menambahkan data dummy jika beberapa field tidak ada
+          
           const enhancedUser = {
             ...parsedUser,
             phone: parsedUser.phone || '+62 812-3456-7890',
@@ -66,11 +66,11 @@ const UserProfilePage = () => {
 
   const handleEditToggle = () => {
     if (isEditing && editedUser) {
-      // Simpan perubahan
+      
       localStorage.setItem('user', JSON.stringify(editedUser));
       setUser(editedUser);
       
-      // Trigger event untuk memberitahu komponen lain (seperti Navbar)
+      
       const updateEvent = new Event('userLogin');
       window.dispatchEvent(updateEvent);
     }

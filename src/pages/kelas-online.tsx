@@ -7,7 +7,7 @@ import Badge from '../components/ui/Badge';
 import { courses } from '../utils/data';
 import Image from 'next/image';
 
-// Define TypeScript interfaces
+
 interface Course {
   id: string | number;
   title: string;
@@ -28,11 +28,11 @@ const KelasOnline: React.FC = () => {
   const [filteredCourses, setFilteredCourses] = useState<Course[]>(courses);
   const [showFilters, setShowFilters] = useState<boolean>(false);
   
-  // Get unique categories and levels
+ 
   const categories: string[] = Array.from(new Set(courses.map(course => course.category)));
   const levels: string[] = Array.from(new Set(courses.map(course => course.level)));
   
-  // Filter courses when search query or filters change
+  
   useEffect(() => {
     const filtered = courses.filter(course => {
       const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -47,14 +47,14 @@ const KelasOnline: React.FC = () => {
     setFilteredCourses(filtered);
   }, [searchQuery, categoryFilter, levelFilter]);
   
-  // Clear all filters
+  
   const clearFilters = (): void => {
     setSearchQuery('');
     setCategoryFilter('');
     setLevelFilter('');
   };
   
-  // Animation variants
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {

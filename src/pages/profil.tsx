@@ -1,4 +1,4 @@
-// src/pages/profil.js
+
 import Head from 'next/head';
 import { motion } from 'framer-motion';
 import TeamSection from '../components/profile/TeamSection';

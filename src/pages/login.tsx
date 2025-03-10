@@ -68,7 +68,10 @@ const LoginPage = () => {
               <span className="text-[#ffffff]">In</span>
             </h1>
 
-            <h1 className="text-4xl font-bold text-[#4a9fff]">SNBTIn</h1>
+
+            <h6 className="text-white mb-2">
+             #1 Platform Persiapan SNBT di Indonesia
+            </h6>
 
           </div>
 

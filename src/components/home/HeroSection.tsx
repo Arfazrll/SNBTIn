@@ -264,7 +264,7 @@ const EnhancedHeroSection: React.FC = () => {
                 <div className="relative w-full h-full bg-primary-400/10 rounded-xl overflow-hidden">
                   <div className="absolute inset-0 bg-black/20 z-10 rounded-xl" />
                   <Image
-                    src="/download (5).jpeg"
+                    src="/image.png"
                     alt="Students studying with SNBTIn"
                     fill
                     className="object-cover"

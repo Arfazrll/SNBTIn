@@ -8,7 +8,7 @@ import React, { useEffect, useState, ReactNode } from 'react';
 import dynamic from 'next/dynamic';
 
 
-// Components import
+
 import HeroSection from '../components/home/HeroSection';
 import FeaturesSection from '../components/home/FeaturesSection';
 import TestimonialsSection from '../components/home/TestimonialsSection';
@@ -16,18 +16,18 @@ import CTASection from '../components/home/CTASection';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 
-// Animation components import
+
 import AnimatedWaveBackground from '../components/effects/AnimatedWaveBackground';
 import ParticlesBackground from '../components/effects/ParticlesBackground';
 import ThreeDModel from '../components/effects/ThreeDModel';
 import FloatingElements from '../components/effects/FloatingElements';
 import ParallaxHero from '../components/effects/ParallaxHero';
 
-// Hooks and data
+
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { courses } from '../utils/data';
 
-// Interface untuk stats
+
 interface Stat {
   icon: React.ReactElement;
   number: string;
@@ -35,15 +35,15 @@ interface Stat {
 }
 
 
-// Interface untuk ClientOnlyMotion
+
 interface ClientOnlyMotionProps {
   children: ReactNode;
 }
 
-// Animation types for selector
+
 type AnimationType = 'none' | 'waves' | 'particles' | '3d' | 'floating';
 
-// Client-side only animation wrapper
+
 const ClientOnlyMotion: React.FC<ClientOnlyMotionProps> = ({ children }) => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   
@@ -52,8 +52,7 @@ const ClientOnlyMotion: React.FC<ClientOnlyMotionProps> = ({ children }) => {
   }, []);
   
   if (!isMounted) {
-    // Return a placeholder with the same layout structure
-    // but without animations to prevent hydration mismatch
+    
     return <div className="opacity-0">{children}</div>;
   }
   
@@ -64,32 +63,32 @@ export default function Home() {
   const { ref: statsRef, controls: statsControls } = useScrollAnimation();
   const { ref: coursesRef, controls: coursesControls } = useScrollAnimation();
   
-  // State untuk animasi background
+ 
   const [activeAnimation, setActiveAnimation] = useState<AnimationType>('particles');
-  // State untuk menampilkan kontrol animasi
+  
   const [showControls, setShowControls] = useState<boolean>(false);
 
-  // Effect untuk menentukan animasi default berdasarkan performa perangkat
+  
   useEffect(() => {
-    // Deteksi perangkat dengan performa rendah
+    
     const isLowPerformanceDevice = window.navigator.hardwareConcurrency <= 2;
     
-    // Set animasi default berdasarkan performa
+   
     if (isLowPerformanceDevice) {
       setActiveAnimation('none');
     } else {
-      // Default animasi untuk perangkat dengan performa baik
+     
       setActiveAnimation('particles');
     }
     
-    // Cek parameter URL untuk animation control
+  
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('showAnimationControls') === 'true') {
       setShowControls(true);
     }
   }, []);
   
-  // Define variants
+  
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
@@ -113,7 +112,7 @@ export default function Home() {
     }
   };
   
-  // Stats data
+ 
   const statsData: Stat[] = [
     { icon: <FiBook size={24} />, number: "10,000+", label: "Soal Latihan" },
     { icon: <FiCheckSquare size={24} />, number: "85%", label: "Tingkat Kelulusan" },

@@ -6,7 +6,7 @@ import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import Image from 'next/image';
 
-// Definisikan interface untuk data
+
 interface ForumTopic {
   id: number;
   title: string;
@@ -29,7 +29,7 @@ interface Category {
 export default function ForumDiskusi() {
   const [activeTab, setActiveTab] = useState<'terbaru' | 'populer' | 'belum-terjawab'>('terbaru');
   
-  // Mock forum data
+  
   const forumTopics: ForumTopic[] = [
     {
       id: 1,
