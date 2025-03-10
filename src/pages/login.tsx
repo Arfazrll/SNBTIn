@@ -58,7 +58,7 @@ const LoginPage = () => {
   return (
     <div className="flex min-h-screen">
       {/* Login Form Section (Left) */}
-      <div className="w-full md:w-5/12 bg-[#102548] flex flex-col justify-between p-8 rounded-r-xl">
+      <div className="w-full md:w-5/12 bg-[#102548] flex flex-col justify-between p-8">
         <div className="mx-auto w-full max-w-md">
           {/* Logo */}
           <div className="mb-8 text-center">
@@ -179,7 +179,7 @@ const LoginPage = () => {
           backgroundRepeat: "no-repeat"
         }}
       >
-      <div className="absolute inset-0 bg-black/40 flex flex-col justify-center px-12">
+      <div className="absolute inset-0 bg-black/60 flex flex-col justify-center px-12">
 
           <h2 className="text-4xl font-bold text-white mb-2">
             Welcome To <span className="text-[#4a9fff]">SNBT</span>
@@ -192,7 +192,7 @@ const LoginPage = () => {
           </p>
         </div>
         
-        <div className="absolute bottom-4 right-4 flex space-x-6 text-white/80 text-sm">
+        <div className="absolute bottom-7 right-7 flex space-x-6 text-white/80 text-sm">
           <Link href="/terms" className="hover:text-white">
             Syarat dan Ketentuan
           </Link>
