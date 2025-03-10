@@ -687,3 +687,230 @@
 .animation-delay-4000 {
   animation-delay: 4s;
 }
+
+/* Animated Stars Background */
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  background: linear-gradient(to bottom, #0b1120 0%, #111c33 100%);
+}
+
+.stars {
+  width: 3px;
+  height: 3px;
+  background: #fff;
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.4);
+  animation-name: twinkle;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+.stars.large {
+  width: 4px;
+  height: 4px;
+  box-shadow: 0 0 15px 2px rgba(255, 255, 255, 0.4);
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+}
+
+/* Moving Nebula Background */
+.nebula-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.15;
+  animation: nebulaFloat 25s infinite linear;
+}
+
+.nebula1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(64, 134, 255, 0.5) 0%, rgba(59, 130, 246, 0.2) 70%, transparent 100%);
+  top: -100px;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.nebula2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(128, 90, 213, 0.5) 0%, rgba(109, 40, 217, 0.2) 70%, transparent 100%);
+  bottom: -150px;
+  right: 10%;
+  animation-delay: -5s;
+}
+
+.nebula3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, rgba(190, 24, 93, 0.2) 70%, transparent 100%);
+  top: 40%;
+  left: -100px;
+  animation-delay: -10s;
+}
+
+@keyframes nebulaFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-50px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+  }
+}
+
+/* Shooting stars */
+.shooting-star {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+  animation: shootingStars 6s linear infinite;
+  opacity: 0;
+  transform: rotate(45deg);
+}
+
+.shooting-star:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+  transform: translateX(50%);
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px white;
+}
+
+.shooting-star:nth-child(1) {
+  animation-delay: 0s;
+  top: 20%;
+  left: 20%;
+}
+
+.shooting-star:nth-child(2) {
+  animation-delay: 3s;
+  top: 30%;
+  left: 70%;
+}
+
+.shooting-star:nth-child(3) {
+  animation-delay: 5s;
+  top: 70%;
+  left: 40%;
+}
+
+@keyframes shootingStars {
+  0% {
+    transform: translateX(-300px) translateY(-300px) rotate(45deg);
+    opacity: 1;
+  }
+  20% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(400px) translateY(400px) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* Navbar separator */
+.navbar-separator {
+  position: relative;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    rgba(59, 130, 246, 0) 0%, 
+    rgba(59, 130, 246, 1) 50%, 
+    rgba(59, 130, 246, 0) 100%);
+  opacity: 0.7;
+  overflow: hidden;
+}
+
+.navbar-separator:before {
+  content: '';
+  position: absolute;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.8) 50%, 
+    rgba(255, 255, 255, 0) 100%);
+  animation: shine 4s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
+/* Title styles with gradient */
+.title-gradient {
+  background: linear-gradient(90deg, #4F86F7, #3B82F6, #7BB2FF);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient 4s linear infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glass container */
+.glass-container {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
