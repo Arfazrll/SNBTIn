@@ -58,7 +58,7 @@ const LoginPage = () => {
   return (
     <div className="flex min-h-screen">
       {/* Login Form Section (Left) */}
-      <div className="w-full md:w-5/12 bg-[#102548] flex flex-col justify-between p-8">
+      <div className="w-full md:w-5/12 bg-[#102548] flex flex-col justify-between p-20">
         <div className="mx-auto w-full max-w-md">
           {/* Logo */}
           <div className="mb-8 text-center">
@@ -171,7 +171,7 @@ const LoginPage = () => {
       </div>
 
       {/* Welcome Section (Right) */}
-      <div className="relative md:flex md:w-7/12 relative"
+      <div className="relative md:flex md:w-7/12"
         style={{
           backgroundImage: "url('/bukubege.png')",
           backgroundSize: "cover",
@@ -192,7 +192,7 @@ const LoginPage = () => {
           </p>
         </div>
         
-        <div className="absolute bottom-7 right-7 flex space-x-6 text-white/80 text-sm">
+        <div className="absolute bottom-20 right-16 flex space-x-6 text-white/80 text-sm">
           <Link href="/terms" className="hover:text-white">
             Syarat dan Ketentuan
           </Link>
