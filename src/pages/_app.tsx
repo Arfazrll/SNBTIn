@@ -5,6 +5,8 @@ import { AnimatePresence } from 'framer-motion';
 import type { AppProps } from 'next/app';
 import Layout from '../components/layout/Layout';
 import '../styles/globals.css';
+import Link from "next/link";
+
 
 // Memperluas tipe Window untuk menambahkan gtag
 declare global {
