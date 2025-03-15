@@ -5,6 +5,7 @@ import { FiMessageSquare, FiThumbsUp, FiEye, FiClock, FiTag, FiChevronRight, FiU
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import Image from 'next/image';
+import { useRouter } from 'next/router'; 
 
 
 interface ForumTopic {
@@ -28,6 +29,12 @@ interface Category {
 
 export default function ForumDiskusi() {
   const [activeTab, setActiveTab] = useState<'terbaru' | 'populer' | 'belum-terjawab'>('terbaru');
+
+  const router = useRouter(); // Inisialisasi router
+
+  const handleForumClick = (id: number) => {
+    router.push(`/forum-diskusi-detail?id=${id}`);
+  };
   
   
   const forumTopics: ForumTopic[] = [
@@ -46,7 +53,7 @@ export default function ForumDiskusi() {
     },
     {
       id: 2,
-      title: "Perbedaan antara SNBT dan SNBT?",
+      title: "Bagaimana cara menyelesaikan soal limit fungsi trigonometri ini?",
       category: "Umum",
       author: "Sinta Dewi",
       authorImg: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
@@ -279,7 +286,7 @@ export default function ForumDiskusi() {
                           </div>
                         </div>
                         
-                        <button className="ml-2 p-2 text-secondary-400 hover:text-primary-500 dark:text-secondary-500 dark:hover:text-primary-400">
+                        <button className="ml-2 p-2 text-secondary-400 hover:text-primary-500 dark:text-secondary-500 dark:hover:text-primary-400"  onClick={() => handleForumClick(topic.id)} >
                           <FiChevronRight size={20} />
                         </button>
                       </div>
@@ -362,7 +369,7 @@ export default function ForumDiskusi() {
             </div>
           </div>
         </div>
-      </section>
-    </>
-  );
-}
+        </section>
+      </>
+    );
+  }
