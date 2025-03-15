@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:@localhost:3306/snbtinnew"
+}
+
+model User {
+  id             Int     @id @default(autoincrement())
+  name           String
+  email          String  @unique
+  password       String
+  emailVerifiedAt DateTime?
+  rememberToken  String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  profile        UserProfile?
+  forumTopics    ForumTopic[]
+  forumReplies   ForumReply[]
+  forumLikes     ForumLike[]
+  chatRooms      ChatRoomUser[]
+  sessions       Session[]
+}
+
+model UserProfile {
+  id        Int    @id @default(autoincrement())
+  userId    Int    @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ForumCategory {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  topics    ForumTopic[]
+}
+
+model ForumTopic {
+  id          Int     @id @default(autoincrement())
+  userId      Int
+  categoryId  Int
+  title       String
+  content     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category    ForumCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  replies     ForumReply[]
+  likes       ForumLike[]
+}
+
+model ForumReply {
+  id         Int    @id @default(autoincrement())
+  userId     Int
+  topicId    Int
+  content    String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic      ForumTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+}
+
+model ForumLike {
+  id         Int    @id @default(autoincrement())
+  userId     Int
+  topicId    Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic      ForumTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+}
+
+model ChatRoom {
+  id        Int    @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users     ChatRoomUser[]
+}
+
+model ChatRoomUser {
+  id          Int    @id @default(autoincrement())
+  chatRoomId  Int
+  userId      Int
+
+  chatRoom    ChatRoom @relation(fields: [chatRoomId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PasswordResetToken {
+  email      String  @id
+  token      String
+  createdAt  DateTime @default(now())
+}
+
+model Session {
+  id         String  @id
+  userId     Int?
+  ipAddress  String?
+  userAgent  String?
+  payload    String
+  lastActivity Int
+
+  user       User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
+
