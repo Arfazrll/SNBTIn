@@ -338,7 +338,7 @@ function Materi() {
         <title>Materi - SNBTIn</title>
       </Head>
       
-      <section className="py-12 bg-primary-50 dark:bg-primary-900/10">
+      <section className="py-12 bg-primary-50 dark:bg-[#1F2D4C]">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

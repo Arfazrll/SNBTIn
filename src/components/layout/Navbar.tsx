@@ -195,14 +195,7 @@ const Navbar = () => {
                       </span>
                     )}
                   </div>
-                  <div className="hidden md:block">
-                    <p className="text-sm font-medium text-secondary-800 dark:text-white">
-                      {user.name || 'User'}
-                    </p>
-                    <p className="text-xs text-secondary-500 dark:text-secondary-400 truncate max-w-[120px]">
-                      {user.email || ''}
-                    </p>
-                  </div>
+                  
                   <FiChevronDown className={`transition-transform duration-300 ${showProfileMenu ? 'rotate-180' : ''}`} />
                 </motion.div>
                 

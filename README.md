@@ -483,6 +483,6 @@ Tim pengembang SNBTIn yang berdedikasi:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-© 2025 SNBT Prep. Hak Cipta Dilindungi.
+© 2025 SNBTIn. Hak Cipta Dilindungi.
 
 </div>

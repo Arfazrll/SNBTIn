@@ -16,7 +16,7 @@ const LoginPage = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
-    
+      
     if (!email || !password) {
       setError('Username/Email dan Password harus diisi');
       return;
@@ -26,7 +26,7 @@ const LoginPage = () => {
 
     try {
       // Simulate API login call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 2000));
       
       // Example user data - in a real app, this would come from your API response
       const userData = {
@@ -58,7 +58,7 @@ const LoginPage = () => {
   return (
     <div className="flex min-h-screen">
       {/* Login Form Section (Left) */}
-      <div className="w-full md:w-5/12 bg-[#102548] flex flex-col justify-between p-20">
+      <div className="w-full md:w-5/12 bg-[#1E41A5] dark:bg-[#101B34] flex flex-col justify-between p-20">
         <div className="mx-auto w-full max-w-md">
           {/* Logo */}
           <div className="mb-8 text-center">
@@ -134,7 +134,7 @@ const LoginPage = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 px-4 rounded-md bg-white hover:bg-gray-100 text-[#102548] font-medium transition-colors duration-200"
+              className="w-full py-3 px-4 rounded-md bg-[#101B34] dark:bg-[#1E41A5] text-[#ffffff] dark:text-[#ffffff] font-medium transition-colors duration-200"
             >
               {isLoading ? 'Logging in...' : 'Login'}
             </button>
