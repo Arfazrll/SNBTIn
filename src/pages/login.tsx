@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import Image from 'next/image';
+import axios from 'axios';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -16,7 +17,7 @@ const LoginPage = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
-      
+    
     if (!email || !password) {
       setError('Username/Email dan Password harus diisi');
       return;
@@ -25,27 +26,22 @@ const LoginPage = () => {
     setIsLoading(true);
 
     try {
-      // Simulate API login call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const response = await axios.post('http://localhost:3000/api/login', { email, password });
+      const { token, user } = response.data;
+
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
       
-      // Example user data - in a real app, this would come from your API response
-      const userData = {
-        name: email.split('@')[0], // Simple example - extract name from email
-        email: email,
-        // You can add more user properties here
-      };
-      
-      // Store user data in localStorage for persistence across page refreshes
-      localStorage.setItem('user', JSON.stringify(userData));
-      
-      // Trigger a custom event to notify other components (like Navbar) about login
       const loginEvent = new Event('userLogin');
       window.dispatchEvent(loginEvent);
       
-      // Redirect to dashboard
       router.push('/');
     } catch (err) {
-      setError('Username/Email atau Password tidak valid');
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.message || 'Username/Email atau Password tidak valid');
+      } else {
+        setError('An unexpected error occurred');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -62,17 +58,13 @@ const LoginPage = () => {
         <div className="mx-auto w-full max-w-md">
           {/* Logo */}
           <div className="mb-8 text-center">
-
             <h1 className="text-4xl font-bold">
               <span className="text-[#4a9fff]">SNBT</span>
               <span className="text-[#ffffff]">In</span>
             </h1>
-
-
             <h6 className="text-white mb-2">
-             #1 Platform Persiapan SNBT di Indonesia
+              #1 Platform Persiapan SNBT di Indonesia
             </h6>
-
           </div>
 
           {/* Form */}
@@ -130,6 +122,12 @@ const LoginPage = () => {
                 </Link>
               </div>
             </div>
+            <p className="text-center text-white mt-4">
+              Don't have an account?{" "}
+              <Link href="/signup" className="text-[#4a9fff] hover:underline">
+                Register here
+              </Link>
+            </p>
             
             <button
               type="submit"
@@ -139,66 +137,6 @@ const LoginPage = () => {
               {isLoading ? 'Logging in...' : 'Login'}
             </button>
           </form>
-          
-          <div className="mt-6 text-center text-white">
-            <p className="text-sm">
-              Don&apos;t Have Account?{' '}
-              <Link href="/register" className="text-[#4a9fff] hover:underline">
-                Create one
-              </Link>
-            </p>
-            
-            <div className="mt-4 flex items-center justify-center">
-              <div className="flex-grow h-px bg-gray-400/30"></div>
-              <p className="mx-4 text-sm text-gray-400">Or</p>
-              <div className="flex-grow h-px bg-gray-400/30"></div>
-            </div>
-            
-            <div className="mt-4 flex justify-center space-x-4">
-              <button className="p-2 rounded-full bg-white hover:bg-gray-100 transition-colors duration-200">
-                <Image src="/googlelogo.png" alt="Google" width={24} height={24} className="rounded-full" />
-              </button>
-              <button className="p-2 rounded-full bg-white hover:bg-gray-100 transition-colors duration-200">
-                <Image src="/Facebook-logo.png" alt="Facebook" width={24} height={24} className="rounded-full" />
-              </button>
-            </div>
-          </div>
-        </div>
-        
-        <div className="mt-8 text-center text-sm text-white/70">
-          2025 SNBTIn Hak Cipta Dilindungi
-        </div>
-      </div>
-
-      {/* Welcome Section (Right) */}
-      <div className="relative md:flex md:w-7/12"
-        style={{
-          backgroundImage: "url('/bukubege.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "right-center",
-          backgroundRepeat: "no-repeat"
-        }}
-      >
-      <div className="absolute inset-0 bg-black/60 flex flex-col justify-center px-12">
-
-          <h2 className="text-4xl font-bold text-white mb-2">
-            Welcome To <span className="text-[#4a9fff]">SNBT</span>
-            <span className="text-[#ffffff]">In</span>
-          </h2>
-          <p className="text-2xl text-white mb-2">
-            Platform <span className="text-[#4a9fff]">E-Learning</span> terdepan yang 
-            membantu siswa Indonesia mencapai impian mereka untuk 
-            berkuliah di perguruan tinggi negeri terbaik.
-          </p>
-        </div>
-        
-        <div className="absolute bottom-20 right-16 flex space-x-6 text-white/80 text-sm">
-          <Link href="/terms" className="hover:text-white">
-            Syarat dan Ketentuan
-          </Link>
-          <Link href="/privacy" className="hover:text-white">
-            Kebijakan Privasi
-          </Link>
         </div>
       </div>
     </div>
