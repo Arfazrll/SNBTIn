@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://avnadmin:AVNS_9cq_4c-VzgXI_ISNuzC@booking-room-app-funding-rate.f.aivencloud.com:16616/snbtin_magista?ssl-mode=REQUIRED"
+  url      = env("DATABASE_URL")
 }
 
 model User {
