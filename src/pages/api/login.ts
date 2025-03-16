@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
-const SECRET_KEY = process.env.JWT_SECRET || "your_secret_key"; 
+const SECRET_KEY = process.env.JWT_SECRET || "rahasia"; 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
