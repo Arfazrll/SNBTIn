@@ -4,8 +4,12 @@ import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
-export default async function POST(req: NextApiRequest, res: NextApiResponse) {
-  const { email, password, name } = req.body; // Assuming your DB has a "name" column
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== "POST") {
+    return res.setHeader("Allow", ["POST"]).status(405).json({ message: "Method Not Allowed" });
+  }
+
+  const { email, password, name } = req.body;
 
   if (!email || !password || !name) {
     return res.status(400).json({ message: "All fields are required" });
