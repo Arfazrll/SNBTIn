@@ -23,7 +23,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     // Fix for white dot issue
     const style = document.createElement('style');
     style.textContent = `
-      body::before, body::after, #__next::before, #__next::after {
+      body::before, body::after, #_next::before, #_next::after {
         display: none !important;
         content: none !important;
       }
@@ -105,11 +105,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         const posX = Math.floor(Math.random() * window.innerWidth);
         const posY = Math.floor(Math.random() * window.innerHeight);
         
-        star.style.left = `${posX}px`;
-        star.style.top = `${posY}px`;
+        star.style.left = '${posX}px';
+        star.style.top = '${posY}px';
         
         // Random animation delay
-        star.style.animationDelay = `${Math.random() * 4}s`;
+        star.style.animationDelay = '${Math.random() * 4}s';
         
         starsContainer.appendChild(star);
       }
