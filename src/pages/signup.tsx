@@ -29,7 +29,7 @@ const SignupPage = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:3000/api/register", {
+      const response = await axios.post("https://snbtin.vercel.app/api/register", {
         name,
         email,
         password,

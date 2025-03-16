@@ -26,7 +26,7 @@ const LoginPage = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:3000/api/login', { email, password });
+      const response = await axios.post('https://snbtin.vercel.app/api/login', { email, password });
       const { token, user } = response.data;
 
       localStorage.setItem('token', token);
