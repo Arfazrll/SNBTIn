@@ -29,7 +29,7 @@ const SignupPage = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(`${process.env.BASE_URL}/api/register`, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/register`, {
         name,
         email,
         password,
