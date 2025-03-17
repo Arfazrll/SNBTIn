@@ -105,7 +105,7 @@ const SignupPage = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 px-4 rounded-md bg-[#101B34] text-white font-medium transition-colors duration-200"
+              className="w-full py-3 px-4 rounded-md bg-[#101B34] dark:bg-[#1E41A5] text-white font-medium transition-colors duration-200"
             >
               {isLoading ? "Registering..." : "Register"}
             </button>
@@ -118,6 +118,15 @@ const SignupPage = () => {
             </Link>
           </p>
         </div>
+      </div>
+
+      {/* Welcome Section (Right) */}
+      <div className="relative hidden md:block md:w-7/12">
+        <img 
+          src="/bukubege.png" 
+          alt="Welcome background" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
       </div>
     </div>
   );

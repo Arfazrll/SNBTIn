@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import Image from 'next/image';
 import axios from 'axios';
 
 const LoginPage = () => {
@@ -17,24 +16,22 @@ const LoginPage = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
-    
+
     if (!email || !password) {
       setError('Username/Email dan Password harus diisi');
       return;
     }
-
     setIsLoading(true);
-
     try {
-      const response = await axios.post('${process.env.NEXT_PUBLIC_BASE_URL}/api/login, { email, password }');
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/login`, { email, password });
       const { token, user } = response.data;
 
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
-      
+
       const loginEvent = new Event('userLogin');
       window.dispatchEvent(loginEvent);
-      
+
       router.push('/');
     } catch (err) {
       if (axios.isAxiosError(err)) {
@@ -74,7 +71,7 @@ const LoginPage = () => {
                 {error}
               </div>
             )}
-            
+
             <div>
               <input
                 type="text"
@@ -93,15 +90,15 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full px-4 py-3 rounded-md bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
-              <button 
-                type="button" 
-                onClick={togglePasswordVisibility} 
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
               >
                 {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
               </button>
             </div>
-            
+
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
@@ -123,12 +120,12 @@ const LoginPage = () => {
               </div>
             </div>
             <p className="text-center text-white mt-4">
-              Dont have an account?
+              Don't have an account?{' '}
               <Link href="/signup" className="text-[#4a9fff] hover:underline">
                 Register here
               </Link>
             </p>
-            
+
             <button
               type="submit"
               disabled={isLoading}
@@ -138,6 +135,15 @@ const LoginPage = () => {
             </button>
           </form>
         </div>
+      </div>
+
+      {/* Welcome Section (Right) */}
+      <div className="relative hidden md:block md:w-7/12">
+        <img 
+          src="/bukubege.png" 
+          alt="Welcome background" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
       </div>
     </div>
   );
