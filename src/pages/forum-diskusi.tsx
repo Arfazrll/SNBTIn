@@ -3,7 +3,11 @@ import { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { FiMessageSquare, FiThumbsUp, FiEye, FiClock, FiTag, FiChevronRight, FiUsers, FiPlus, FiUser } from 'react-icons/fi';
+=======
+import { FiMessageSquare, FiThumbsUp, FiEye, FiClock, FiTag, FiChevronRight, FiUsers, FiPlus, FiMessageCircle } from 'react-icons/fi';
+>>>>>>> Stashed changes
 =======
 import { FiMessageSquare, FiThumbsUp, FiEye, FiClock, FiTag, FiChevronRight, FiUsers, FiPlus, FiMessageCircle } from 'react-icons/fi';
 >>>>>>> Stashed changes
@@ -45,10 +49,13 @@ export default function ForumDiskusi() {
   const [activeTab, setActiveTab] = useState<'terbaru' | 'populer' | 'belum-terjawab'>('terbaru');
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
   const [user, setUser] = useState(null);
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -64,7 +71,133 @@ export default function ForumDiskusi() {
     image: ''
   });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+
+  // Set isMounted setelah komponen di-mount untuk menghindari error hydration
+  useEffect(() => {
+    setIsMounted(true);
+    
+    // Initialize forum topics with predefined data
+    const initialTopics: ForumTopic[] = [
+      {
+        id: 1,
+        title: "Cara efektif mempersiapkan TPS SNBT?",
+        category: "TPS",
+        author: "Ahmad Farhan",
+        authorImg: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 24,
+        views: 356,
+        likes: 47,
+        lastActivity: "3 jam yang lalu",
+        isSolved: true,
+        excerpt: "Saya ingin menanyakan tentang strategi belajar yang efektif untuk persiapan TPS SNBT. Bagaimana cara mengatur waktu belajar dan materi apa saja yang harus difokuskan?",
+      },
+      {
+        id: 2,
+        title: "Bagaimana cara menyelesaikan soal limit fungsi trigonometri ini?",
+        category: "Umum",
+        author: "Sinta Dewi",
+        authorImg: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 18,
+        views: 289,
+        likes: 32,
+        lastActivity: "7 jam yang lalu",
+        isSolved: false,
+        excerpt: "Saya masih bingung tentang perbedaan antara SNBT dan UTBK. Apakah keduanya merupakan hal yang sama atau berbeda? Mohon penjelasannya.",
+      },
+      {
+        id: 3,
+        title: "Rumus matematika yang sering keluar di SNBT",
+        category: "Matematika",
+        author: "Budi Santoso",
+        authorImg: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 32,
+        views: 512,
+        likes: 78,
+        lastActivity: "1 hari yang lalu",
+        isSolved: true,
+        excerpt: "Halo teman-teman, saya ingin tahu rumus-rumus matematika apa saja yang sering keluar dalam soal SNBT? Fokus pada materi apa yang perlu diprioritaskan?",
+      },
+      {
+        id: 4,
+        title: "Bagaimana caranya meningkatkan skor Reading Comprehension?",
+        category: "Bahasa Inggris",
+        author: "Dina Amelia",
+        authorImg: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 15,
+        views: 234,
+        likes: 29,
+        lastActivity: "2 hari yang lalu",
+        isSolved: false,
+        excerpt: "Saya kesulitan dalam menjawab soal-soal reading comprehension bahasa Inggris. Ada tips atau trik untuk meningkatkan kemampuan dalam menjawab soal tersebut?",
+      },
+      {
+        id: 5,
+        title: "Jadwal SNBT 2023 dan persiapannya",
+        category: "Umum",
+        author: "Rudi Hermawan",
+        authorImg: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 27,
+        views: 412,
+        likes: 53,
+        lastActivity: "3 hari yang lalu",
+        isSolved: true,
+        excerpt: "Kapan jadwal SNBT 2023 akan dimulai? Bagaimana tahapan persiapan yang optimal mulai dari sekarang hingga hari H ujian?",
+      },
+    ];
+    
+    setForumTopics(initialTopics);
+    
+    // Fetch random user untuk gambar profil
+    const fetchProfileImage = async () => {
+      try {
+        const response = await fetch('https://randomuser.me/api/');
+        const data = await response.json();
+        if (data.results && data.results.length > 0) {
+          setCurrentUser(prev => ({
+            ...prev,
+            image: data.results[0]?.picture?.thumbnail || '',
+            name: `${data.results[0]?.name?.first || ''} ${data.results[0]?.name?.last || 'Pengguna'}`
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching profile image:', error);
+      }
+    };
+    
+    fetchProfileImage();
+  }, []);
+  
+  // Function to handle creating a new topic
+  const handleCreateTopic = () => {
+    if (!newTopicTitle.trim() || !newTopicContent.trim()) return;
+    
+    const newTopic: ForumTopic = {
+      id: forumTopics.length + 1,
+      title: newTopicTitle,
+      category: newTopicCategory,
+      author: currentUser.name,
+      authorImg: currentUser.image || "",
+      replies: 0,
+      views: 1,
+      likes: 0,
+      lastActivity: "Baru saja",
+      isSolved: false,
+      excerpt: newTopicContent.length > 150 ? newTopicContent.substring(0, 147) + "..." : newTopicContent,
+    };
+    
+    // Add new topic to the top of the list
+    setForumTopics([newTopic, ...forumTopics]);
+    
+    // Reset form fields and close modal
+    setNewTopicTitle('');
+    setNewTopicContent('');
+    setNewTopicCategory('Umum');
+    setIsTopicModalOpen(false);
+  };
+>>>>>>> Stashed changes
 
   // Set isMounted setelah komponen di-mount untuk menghindari error hydration
   useEffect(() => {
@@ -361,6 +494,9 @@ export default function ForumDiskusi() {
     setIsChatOpen(!isChatOpen);
   };
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
