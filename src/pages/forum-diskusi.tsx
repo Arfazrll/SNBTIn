@@ -1,12 +1,26 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { FiMessageSquare, FiThumbsUp, FiEye, FiClock, FiTag, FiChevronRight, FiUsers, FiPlus, FiUser } from 'react-icons/fi';
+=======
+import { FiMessageSquare, FiThumbsUp, FiEye, FiClock, FiTag, FiChevronRight, FiUsers, FiPlus, FiMessageCircle } from 'react-icons/fi';
+>>>>>>> Stashed changes
+=======
+import { FiMessageSquare, FiThumbsUp, FiEye, FiClock, FiTag, FiChevronRight, FiUsers, FiPlus, FiMessageCircle } from 'react-icons/fi';
+>>>>>>> Stashed changes
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import Image from 'next/image';
 import { useRouter } from 'next/router'; 
+import dynamic from 'next/dynamic';
 
+// Import LiveChat dengan dynamic import untuk menghindari SSR
+const LiveChat = dynamic(() => import('../components/ui/LiveChat'), { 
+  ssr: false,
+  loading: () => null
+});
 
 interface ForumTopic {
   id: number;
@@ -29,9 +43,276 @@ interface Category {
 
 export default function ForumDiskusi() {
   const [activeTab, setActiveTab] = useState<'terbaru' | 'populer' | 'belum-terjawab'>('terbaru');
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
   const [user, setUser] = useState(null);
+=======
+=======
+>>>>>>> Stashed changes
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isTopicModalOpen, setIsTopicModalOpen] = useState(false);
+  const [newTopicTitle, setNewTopicTitle] = useState('');
+  const [newTopicContent, setNewTopicContent] = useState('');
+  const [newTopicCategory, setNewTopicCategory] = useState('Umum');
+  const [forumTopics, setForumTopics] = useState<ForumTopic[]>([]);
+  const [currentUser, setCurrentUser] = useState({
+    id: 999, // Gunakan ID pengguna yang sebenarnya
+    name: 'Pengguna Aktif',
+    image: ''
+  });
+<<<<<<< Updated upstream
+=======
+
+  // Set isMounted setelah komponen di-mount untuk menghindari error hydration
+  useEffect(() => {
+    setIsMounted(true);
+    
+    // Initialize forum topics with predefined data
+    const initialTopics: ForumTopic[] = [
+      {
+        id: 1,
+        title: "Cara efektif mempersiapkan TPS SNBT?",
+        category: "TPS",
+        author: "Ahmad Farhan",
+        authorImg: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 24,
+        views: 356,
+        likes: 47,
+        lastActivity: "3 jam yang lalu",
+        isSolved: true,
+        excerpt: "Saya ingin menanyakan tentang strategi belajar yang efektif untuk persiapan TPS SNBT. Bagaimana cara mengatur waktu belajar dan materi apa saja yang harus difokuskan?",
+      },
+      {
+        id: 2,
+        title: "Bagaimana cara menyelesaikan soal limit fungsi trigonometri ini?",
+        category: "Umum",
+        author: "Sinta Dewi",
+        authorImg: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 18,
+        views: 289,
+        likes: 32,
+        lastActivity: "7 jam yang lalu",
+        isSolved: false,
+        excerpt: "Saya masih bingung tentang perbedaan antara SNBT dan UTBK. Apakah keduanya merupakan hal yang sama atau berbeda? Mohon penjelasannya.",
+      },
+      {
+        id: 3,
+        title: "Rumus matematika yang sering keluar di SNBT",
+        category: "Matematika",
+        author: "Budi Santoso",
+        authorImg: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 32,
+        views: 512,
+        likes: 78,
+        lastActivity: "1 hari yang lalu",
+        isSolved: true,
+        excerpt: "Halo teman-teman, saya ingin tahu rumus-rumus matematika apa saja yang sering keluar dalam soal SNBT? Fokus pada materi apa yang perlu diprioritaskan?",
+      },
+      {
+        id: 4,
+        title: "Bagaimana caranya meningkatkan skor Reading Comprehension?",
+        category: "Bahasa Inggris",
+        author: "Dina Amelia",
+        authorImg: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 15,
+        views: 234,
+        likes: 29,
+        lastActivity: "2 hari yang lalu",
+        isSolved: false,
+        excerpt: "Saya kesulitan dalam menjawab soal-soal reading comprehension bahasa Inggris. Ada tips atau trik untuk meningkatkan kemampuan dalam menjawab soal tersebut?",
+      },
+      {
+        id: 5,
+        title: "Jadwal SNBT 2023 dan persiapannya",
+        category: "Umum",
+        author: "Rudi Hermawan",
+        authorImg: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 27,
+        views: 412,
+        likes: 53,
+        lastActivity: "3 hari yang lalu",
+        isSolved: true,
+        excerpt: "Kapan jadwal SNBT 2023 akan dimulai? Bagaimana tahapan persiapan yang optimal mulai dari sekarang hingga hari H ujian?",
+      },
+    ];
+    
+    setForumTopics(initialTopics);
+    
+    // Fetch random user untuk gambar profil
+    const fetchProfileImage = async () => {
+      try {
+        const response = await fetch('https://randomuser.me/api/');
+        const data = await response.json();
+        if (data.results && data.results.length > 0) {
+          setCurrentUser(prev => ({
+            ...prev,
+            image: data.results[0]?.picture?.thumbnail || '',
+            name: `${data.results[0]?.name?.first || ''} ${data.results[0]?.name?.last || 'Pengguna'}`
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching profile image:', error);
+      }
+    };
+    
+    fetchProfileImage();
+  }, []);
+  
+  // Function to handle creating a new topic
+  const handleCreateTopic = () => {
+    if (!newTopicTitle.trim() || !newTopicContent.trim()) return;
+    
+    const newTopic: ForumTopic = {
+      id: forumTopics.length + 1,
+      title: newTopicTitle,
+      category: newTopicCategory,
+      author: currentUser.name,
+      authorImg: currentUser.image || "",
+      replies: 0,
+      views: 1,
+      likes: 0,
+      lastActivity: "Baru saja",
+      isSolved: false,
+      excerpt: newTopicContent.length > 150 ? newTopicContent.substring(0, 147) + "..." : newTopicContent,
+    };
+    
+    // Add new topic to the top of the list
+    setForumTopics([newTopic, ...forumTopics]);
+    
+    // Reset form fields and close modal
+    setNewTopicTitle('');
+    setNewTopicContent('');
+    setNewTopicCategory('Umum');
+    setIsTopicModalOpen(false);
+  };
+>>>>>>> Stashed changes
+
+  // Set isMounted setelah komponen di-mount untuk menghindari error hydration
+  useEffect(() => {
+    setIsMounted(true);
+    
+    // Initialize forum topics with predefined data
+    const initialTopics: ForumTopic[] = [
+      {
+        id: 1,
+        title: "Cara efektif mempersiapkan TPS SNBT?",
+        category: "TPS",
+        author: "Ahmad Farhan",
+        authorImg: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 24,
+        views: 356,
+        likes: 47,
+        lastActivity: "3 jam yang lalu",
+        isSolved: true,
+        excerpt: "Saya ingin menanyakan tentang strategi belajar yang efektif untuk persiapan TPS SNBT. Bagaimana cara mengatur waktu belajar dan materi apa saja yang harus difokuskan?",
+      },
+      {
+        id: 2,
+        title: "Bagaimana cara menyelesaikan soal limit fungsi trigonometri ini?",
+        category: "Umum",
+        author: "Sinta Dewi",
+        authorImg: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 18,
+        views: 289,
+        likes: 32,
+        lastActivity: "7 jam yang lalu",
+        isSolved: false,
+        excerpt: "Saya masih bingung tentang perbedaan antara SNBT dan UTBK. Apakah keduanya merupakan hal yang sama atau berbeda? Mohon penjelasannya.",
+      },
+      {
+        id: 3,
+        title: "Rumus matematika yang sering keluar di SNBT",
+        category: "Matematika",
+        author: "Budi Santoso",
+        authorImg: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 32,
+        views: 512,
+        likes: 78,
+        lastActivity: "1 hari yang lalu",
+        isSolved: true,
+        excerpt: "Halo teman-teman, saya ingin tahu rumus-rumus matematika apa saja yang sering keluar dalam soal SNBT? Fokus pada materi apa yang perlu diprioritaskan?",
+      },
+      {
+        id: 4,
+        title: "Bagaimana caranya meningkatkan skor Reading Comprehension?",
+        category: "Bahasa Inggris",
+        author: "Dina Amelia",
+        authorImg: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 15,
+        views: 234,
+        likes: 29,
+        lastActivity: "2 hari yang lalu",
+        isSolved: false,
+        excerpt: "Saya kesulitan dalam menjawab soal-soal reading comprehension bahasa Inggris. Ada tips atau trik untuk meningkatkan kemampuan dalam menjawab soal tersebut?",
+      },
+      {
+        id: 5,
+        title: "Jadwal SNBT 2023 dan persiapannya",
+        category: "Umum",
+        author: "Rudi Hermawan",
+        authorImg: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
+        replies: 27,
+        views: 412,
+        likes: 53,
+        lastActivity: "3 hari yang lalu",
+        isSolved: true,
+        excerpt: "Kapan jadwal SNBT 2023 akan dimulai? Bagaimana tahapan persiapan yang optimal mulai dari sekarang hingga hari H ujian?",
+      },
+    ];
+    
+    setForumTopics(initialTopics);
+    
+    // Fetch random user untuk gambar profil
+    const fetchProfileImage = async () => {
+      try {
+        const response = await fetch('https://randomuser.me/api/');
+        const data = await response.json();
+        if (data.results && data.results.length > 0) {
+          setCurrentUser(prev => ({
+            ...prev,
+            image: data.results[0]?.picture?.thumbnail || '',
+            name: `${data.results[0]?.name?.first || ''} ${data.results[0]?.name?.last || 'Pengguna'}`
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching profile image:', error);
+      }
+    };
+    
+    fetchProfileImage();
+  }, []);
+  
+  // Function to handle creating a new topic
+  const handleCreateTopic = () => {
+    if (!newTopicTitle.trim() || !newTopicContent.trim()) return;
+    
+    const newTopic: ForumTopic = {
+      id: forumTopics.length + 1,
+      title: newTopicTitle,
+      category: newTopicCategory,
+      author: currentUser.name,
+      authorImg: currentUser.image || "",
+      replies: 0,
+      views: 1,
+      likes: 0,
+      lastActivity: "Baru saja",
+      isSolved: false,
+      excerpt: newTopicContent.length > 150 ? newTopicContent.substring(0, 147) + "..." : newTopicContent,
+    };
+    
+    // Add new topic to the top of the list
+    setForumTopics([newTopic, ...forumTopics]);
+    
+    // Reset form fields and close modal
+    setNewTopicTitle('');
+    setNewTopicContent('');
+    setNewTopicCategory('Umum');
+    setIsTopicModalOpen(false);
+  };
+>>>>>>> Stashed changes
 
   const handleLoginClick = () => {
     router.push('/login');
@@ -40,6 +321,7 @@ export default function ForumDiskusi() {
   const handleForumClick = (id: number) => {
     router.push(`/forum-diskusi-detail?id=${id}`);
   };
+<<<<<<< Updated upstream
 
     useEffect(() => {
       setIsClient(true);
@@ -73,74 +355,25 @@ export default function ForumDiskusi() {
           </div>
         );
       }
+=======
   
-  const forumTopics: ForumTopic[] = [
-    {
-      id: 1,
-      title: "Cara efektif mempersiapkan TPS SNBT?",
-      category: "TPS",
-      author: "Ahmad Farhan",
-      authorImg: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
-      replies: 24,
-      views: 356,
-      likes: 47,
-      lastActivity: "3 jam yang lalu",
-      isSolved: true,
-      excerpt: "Saya ingin menanyakan tentang strategi belajar yang efektif untuk persiapan TPS SNBT. Bagaimana cara mengatur waktu belajar dan materi apa saja yang harus difokuskan?",
-    },
-    {
-      id: 2,
-      title: "Bagaimana cara menyelesaikan soal limit fungsi trigonometri ini?",
-      category: "Umum",
-      author: "Sinta Dewi",
-      authorImg: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
-      replies: 18,
-      views: 289,
-      likes: 32,
-      lastActivity: "7 jam yang lalu",
-      isSolved: false,
-      excerpt: "Saya masih bingung tentang perbedaan antara SNBT dan UTBK. Apakah keduanya merupakan hal yang sama atau berbeda? Mohon penjelasannya.",
-    },
-    {
-      id: 3,
-      title: "Rumus matematika yang sering keluar di SNBT",
-      category: "Matematika",
-      author: "Budi Santoso",
-      authorImg: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
-      replies: 32,
-      views: 512,
-      likes: 78,
-      lastActivity: "1 hari yang lalu",
-      isSolved: true,
-      excerpt: "Halo teman-teman, saya ingin tahu rumus-rumus matematika apa saja yang sering keluar dalam soal SNBT? Fokus pada materi apa yang perlu diprioritaskan?",
-    },
-    {
-      id: 4,
-      title: "Bagaimana caranya meningkatkan skor Reading Comprehension?",
-      category: "Bahasa Inggris",
-      author: "Dina Amelia",
-      authorImg: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
-      replies: 15,
-      views: 234,
-      likes: 29,
-      lastActivity: "2 hari yang lalu",
-      isSolved: false,
-      excerpt: "Saya kesulitan dalam menjawab soal-soal reading comprehension bahasa Inggris. Ada tips atau trik untuk meningkatkan kemampuan dalam menjawab soal tersebut?",
-    },
-    {
-      id: 5,
-      title: "Jadwal SNBT 2023 dan persiapannya",
-      category: "Umum",
-      author: "Rudi Hermawan",
-      authorImg: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&h=120&q=80",
-      replies: 27,
-      views: 412,
-      likes: 53,
-      lastActivity: "3 hari yang lalu",
-      isSolved: true,
-      excerpt: "Kapan jadwal SNBT 2023 akan dimulai? Bagaimana tahapan persiapan yang optimal mulai dari sekarang hingga hari H ujian?",
-    },
-  ];
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen);
+  };
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+  
+  const openTopicModal = () => {
+    setIsTopicModalOpen(true);
+  };
+  
+  const closeTopicModal = () => {
+    setIsTopicModalOpen(false);
+  };
+  
+
   
   // Fungsi helper untuk perbandingan tanggal (untuk menghindari operasi aritmatika pada Date)
   const compareDates = (dateStringA: string, dateStringB: string): number => {
@@ -255,12 +488,26 @@ export default function ForumDiskusi() {
                   </button>
                 </div>
                 
-                <Button
-                  icon={<FiPlus />}
-                  iconPosition="left"
-                >
-                  Buat Topik Baru
-                </Button>
+                <div className="flex space-x-2">
+                  {/* Live Chat Button */}
+                  {isMounted && (
+                    <button 
+                      onClick={toggleChat}
+                      className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                    >
+                      <FiMessageCircle className="mr-2" />
+                      {isChatOpen ? 'Tutup Live Chat' : 'Live Chat'}
+                    </button>
+                  )}
+                  
+                  <Button
+                    icon={<FiPlus />}
+                    iconPosition="left"
+                    onClick={openTopicModal}
+                  >
+                    Buat Topik Baru
+                  </Button>
+                </div>
               </div>
               
               {/* Topics list */}
@@ -406,7 +653,94 @@ export default function ForumDiskusi() {
             </div>
           </div>
         </div>
-        </section>
-      </>
-    );
-  }
+      </section>
+      
+      {/* Live Chat Component */}
+      {/* Create New Topic Modal */}
+      {isTopicModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-secondary-800 rounded-lg p-6 w-full max-w-2xl">
+            <h2 className="text-2xl font-bold text-secondary-900 dark:text-white mb-4">Buat Topik Baru</h2>
+            
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="topicTitle" className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1">
+                  Judul Topik
+                </label>
+                <input
+                  id="topicTitle"
+                  type="text"
+                  value={newTopicTitle}
+                  onChange={(e) => setNewTopicTitle(e.target.value)}
+                  placeholder="Tuliskan judul topik yang ingin dibahas..."
+                  className="w-full p-3 border border-secondary-300 dark:border-secondary-600 rounded-lg bg-white dark:bg-secondary-700 text-secondary-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="topicCategory" className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1">
+                  Kategori
+                </label>
+                <select
+                  id="topicCategory"
+                  value={newTopicCategory}
+                  onChange={(e) => setNewTopicCategory(e.target.value)}
+                  className="w-full p-3 border border-secondary-300 dark:border-secondary-600 rounded-lg bg-white dark:bg-secondary-700 text-secondary-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                >
+                  <option value="Umum">Umum</option>
+                  <option value="TPS">TPS</option>
+                  <option value="Matematika">Matematika</option>
+                  <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                  <option value="Bahasa Inggris">Bahasa Inggris</option>
+                </select>
+              </div>
+              
+              <div>
+                <label htmlFor="topicContent" className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1">
+                  Konten
+                </label>
+                <textarea
+                  id="topicContent"
+                  value={newTopicContent}
+                  onChange={(e) => setNewTopicContent(e.target.value)}
+                  placeholder="Jelaskan pertanyaan atau topik yang ingin didiskusikan..."
+                  rows={6}
+                  className="w-full p-3 border border-secondary-300 dark:border-secondary-600 rounded-lg bg-white dark:bg-secondary-700 text-secondary-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 resize-y"
+                />
+              </div>
+            </div>
+            
+            <div className="mt-6 flex justify-end space-x-3">
+              <button
+                onClick={closeTopicModal}
+                className="px-4 py-2 border border-secondary-300 dark:border-secondary-600 text-secondary-700 dark:text-secondary-300 rounded-lg hover:bg-secondary-100 dark:hover:bg-secondary-700 transition-colors"
+              >
+                Batal
+              </button>
+              
+              <button
+                onClick={handleCreateTopic}
+                className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+                disabled={!newTopicTitle.trim() || !newTopicContent.trim()}
+              >
+                Kirim
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Live Chat Component */}
+      {isMounted && isChatOpen && (
+        <LiveChat
+          topicId={1}
+          userId={currentUser.id}
+          userName={currentUser.name}
+          userImage={currentUser.image}
+          isMinimized={!isChatOpen}
+          onToggleMinimize={toggleChat}
+        />
+      )}
+    </>
+  );
+}
