@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { FiMessageSquare, FiThumbsUp, FiEye, FiClock, FiTag, FiChevronRight, FiUsers, FiPlus } from 'react-icons/fi';
+import { FiMessageSquare, FiThumbsUp, FiEye, FiClock, FiTag, FiChevronRight, FiUsers, FiPlus, FiUser } from 'react-icons/fi';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import Image from 'next/image';
@@ -29,13 +29,50 @@ interface Category {
 
 export default function ForumDiskusi() {
   const [activeTab, setActiveTab] = useState<'terbaru' | 'populer' | 'belum-terjawab'>('terbaru');
+  const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
+  const [user, setUser] = useState(null);
 
-  const router = useRouter(); // Inisialisasi router
+  const handleLoginClick = () => {
+    router.push('/login');
+  };
 
   const handleForumClick = (id: number) => {
     router.push(`/forum-diskusi-detail?id=${id}`);
   };
-  
+
+    useEffect(() => {
+      setIsClient(true);
+      
+      // Memeriksa apakah user sudah login
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        try {
+          const parsedUser = JSON.parse(storedUser);
+          setUser(parsedUser);
+        } catch (e) {
+          console.error('Error parsing user data:', e);
+        }
+      }
+    }, []);
+
+      if (!user) {
+        return (
+          <div className="min-h-screen bg-secondary-50 dark:bg-secondary-900 py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center">
+            <div className="text-center mb-8">
+              <FiUser size={64} className="mx-auto text-secondary-400" />
+              <h2 className="mt-4 text-2xl font-semibold text-secondary-800 dark:text-white">Anda belum login</h2>
+              <p className="mt-2 text-secondary-600 dark:text-secondary-400">Silakan login untuk melihat profil Anda</p>
+              <button
+                onClick={handleLoginClick}
+                className="mt-6 px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors"
+              >
+                LOGIN
+              </button>
+            </div>
+          </div>
+        );
+      }
   
   const forumTopics: ForumTopic[] = [
     {

@@ -1,12 +1,11 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
-import { motion, Variants } from 'framer-motion'; // Import Variants from framer-motion
-import { FiSearch, FiFilter, FiChevronDown, FiBarChart, FiClock, FiBook } from 'react-icons/fi';
+import { motion, Variants } from 'framer-motion';
+import { FiSearch, FiFilter, FiChevronDown, FiUser } from 'react-icons/fi';
+import { useRouter } from 'next/router';
 import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
 import { courses } from '../utils/data';
-import Image from 'next/image';
-
 
 interface Course {
   id: string | number;
@@ -27,12 +26,32 @@ const KelasOnline: React.FC = () => {
   const [levelFilter, setLevelFilter] = useState<string>('');
   const [filteredCourses, setFilteredCourses] = useState<Course[]>(courses);
   const [showFilters, setShowFilters] = useState<boolean>(false);
-  
- 
-  const categories: string[] = Array.from(new Set(courses.map(course => course.category)));
-  const levels: string[] = Array.from(new Set(courses.map(course => course.level)));
-  
-  
+  const [user, setUser] = useState(null);
+  const [isClient, setIsClient] = useState(false);
+  const router = useRouter();
+
+  // Check if user is logged in
+  useEffect(() => {
+    setIsClient(true);
+    
+    // Checking if user is logged in
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+      } catch (e) {
+        console.error('Error parsing user data:', e);
+      }
+    }
+  }, []);
+
+  // Handle login button click
+  const handleLoginClick = () => {
+    router.push('/login');
+  };
+
+  // Filter courses based on search and filters
   useEffect(() => {
     const filtered = courses.filter(course => {
       const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -47,39 +66,35 @@ const KelasOnline: React.FC = () => {
     setFilteredCourses(filtered);
   }, [searchQuery, categoryFilter, levelFilter]);
   
-  
-  const clearFilters = (): void => {
-    setSearchQuery('');
-    setCategoryFilter('');
-    setLevelFilter('');
-  };
-  
+  // Show login page if user is not logged in
+  if (!isClient) {
+    return null; // Prevent hydration errors by not rendering anything on server
+  }
 
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-secondary-50 dark:bg-secondary-900 py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center">
+        <div className="text-center mb-8">
+          <FiUser size={64} className="mx-auto text-secondary-400" />
+          <h2 className="mt-4 text-2xl font-semibold text-secondary-800 dark:text-white">Anda belum login</h2>
+          <p className="mt-2 text-secondary-600 dark:text-secondary-400">Silakan login untuk melihat profil Anda</p>
+          <button
+            onClick={handleLoginClick}
+            className="mt-6 px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors"
+          >
+            LOGIN
+          </button>
+        </div>
+      </div>
+    );
+  }
   
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.4 }
-    }
-  };
-  
+  // Main component when user is logged in
   return (
     <>
       <Head>
         <title>Kelas Online - SNBTIn</title>
       </Head>
-      
       <section className="py-12 bg-primary-50 dark:bg-[#1F2D4C]">
         <div className="container mx-auto px-4">
           <motion.div
@@ -98,190 +113,145 @@ const KelasOnline: React.FC = () => {
         </div>
       </section>
       
-      <section className="py-12">
+      {/* Search and filter section */}
+      <section className="py-8 bg-white dark:bg-secondary-800">
         <div className="container mx-auto px-4">
-          {/* Search and filters */}
-          <div className="mb-8">
-            <div className="flex flex-col md:flex-row gap-4 mb-4">
-              <div className="relative flex-grow">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FiSearch className="text-secondary-400 dark:text-secondary-500" />
-                </div>
+          <div className="flex flex-col md:flex-row items-center justify-between mb-6">
+            {/* Search input */}
+            <div className="w-full md:w-1/2 mb-4 md:mb-0">
+              <div className="relative">
+                <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary-400" />
                 <input
                   type="text"
+                  placeholder="Cari kelas..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Cari kelas..."
-                  className="pl-10 pr-4 py-3 w-full rounded-lg bg-white dark:bg-secondary-800 border border-secondary-300 dark:border-secondary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-secondary-900 dark:text-white placeholder-secondary-400 dark:placeholder-secondary-500"
+                  className="w-full pl-10 pr-4 py-2 border border-secondary-200 dark:border-secondary-700 rounded-lg bg-white dark:bg-secondary-900 text-secondary-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
                 />
               </div>
-              
-              <button
-                onClick={() => setShowFilters(!showFilters)}
-                className="px-4 py-3 rounded-lg bg-white dark:bg-secondary-800 border border-secondary-300 dark:border-secondary-700 text-secondary-700 dark:text-secondary-300 hover:bg-secondary-50 dark:hover:bg-secondary-700 flex items-center justify-center space-x-2 w-full md:w-auto"
-              >
-                <FiFilter />
-                <span>Filter</span>
-                <FiChevronDown className={`transition-transform duration-200 ${showFilters ? 'rotate-180' : ''}`} />
-              </button>
             </div>
             
-            {/* Expanded filters */}
-            {showFilters && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="bg-white dark:bg-secondary-800 rounded-lg border border-secondary-300 dark:border-secondary-700 p-4 mb-4"
+            {/* Filter buttons */}
+            <div className="w-full md:w-auto flex space-x-2">
+              <button
+                onClick={() => setShowFilters(!showFilters)}
+                className="flex items-center px-4 py-2 border border-secondary-200 dark:border-secondary-700 rounded-lg bg-white dark:bg-secondary-900 text-secondary-800 dark:text-white hover:bg-secondary-50 dark:hover:bg-secondary-700 transition-colors"
               >
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {/* Category filter */}
-                  <div>
-                    <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
-                      Kategori
-                    </label>
-                    <select
-                      value={categoryFilter}
-                      onChange={(e) => setCategoryFilter(e.target.value)}
-                      className="w-full p-2 rounded-lg bg-white dark:bg-secondary-800 border border-secondary-300 dark:border-secondary-700 text-secondary-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                    >
-                      <option value="">Semua Kategori</option>
-                      {categories.map((category) => (
-                        <option key={category} value={category}>
-                          {category}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  
-                  {/* Level filter */}
-                  <div>
-                    <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
-                      Tingkat
-                    </label>
-                    <select
-                      value={levelFilter}
-                      onChange={(e) => setLevelFilter(e.target.value)}
-                      className="w-full p-2 rounded-lg bg-white dark:bg-secondary-800 border border-secondary-300 dark:border-secondary-700 text-secondary-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-                    >
-                      <option value="">Semua Tingkat</option>
-                      {levels.map((level) => (
-                        <option key={level} value={level}>
-                          {level}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  
-                  {/* Clear filters */}
-                  <div className="flex items-end">
-                    <button
-                      onClick={clearFilters}
-                      className="w-full p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
-                    >
-                      Hapus Filter
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-            
-            {/* Results count */}
-            <div className="text-sm text-secondary-600 dark:text-secondary-400">
-              Menampilkan {filteredCourses.length} dari {courses.length} kelas
+                <FiFilter className="mr-2" />
+                Filter
+                <FiChevronDown className={`ml-2 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
+              </button>
             </div>
           </div>
           
-          {/* Courses grid */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-          >
-            {filteredCourses.length > 0 ? (
-              filteredCourses.map((course) => (
-                <motion.div key={course.id} variants={itemVariants}>
-                  <Card hover className="h-full flex flex-col">
-                    <div className="relative h-48 rounded-t-lg overflow-hidden -mx-5 -mt-5">
-                      <Image
-                        src={course.image}
-                        alt={course.title}
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute top-3 left-3">
-                        <Badge variant="secondary" size="sm">
-                          {course.category}
-                        </Badge>
-                      </div>
+          {/* Filter options */}
+          {showFilters && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 p-4 bg-secondary-50 dark:bg-secondary-700 rounded-lg"
+            >
+              {/* Category filter */}
+              <div>
+                <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1">
+                  Kategori
+                </label>
+                <select
+                  value={categoryFilter}
+                  onChange={(e) => setCategoryFilter(e.target.value)}
+                  className="w-full p-2 border border-secondary-200 dark:border-secondary-600 rounded-lg bg-white dark:bg-secondary-800 text-secondary-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                >
+                  <option value="">Semua Kategori</option>
+                  <option value="Matematika">Matematika</option>
+                  <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                  <option value="Bahasa Inggris">Bahasa Inggris</option>
+                  <option value="Penalaran Umum">Penalaran Umum</option>
+                </select>
+              </div>
+              
+              {/* Level filter */}
+              <div>
+                <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1">
+                  Level
+                </label>
+                <select
+                  value={levelFilter}
+                  onChange={(e) => setLevelFilter(e.target.value)}
+                  className="w-full p-2 border border-secondary-200 dark:border-secondary-600 rounded-lg bg-white dark:bg-secondary-800 text-secondary-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                >
+                  <option value="">Semua Level</option>
+                  <option value="Pemula">Pemula</option>
+                  <option value="Menengah">Menengah</option>
+                  <option value="Lanjutan">Lanjutan</option>
+                </select>
+              </div>
+            </motion.div>
+          )}
+        </div>
+      </section>
+      
+      {/* Course listing */}
+      <section className="py-12 bg-secondary-50 dark:bg-secondary-900">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold mb-8 text-secondary-900 dark:text-white">
+            {filteredCourses.length} Kelas Tersedia
+          </h2>
+          
+          {filteredCourses.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredCourses.map((course) => (
+                <Card key={course.id} className="hover:shadow-lg transition-shadow duration-300">
+                  <div className="aspect-video relative overflow-hidden rounded-t-lg">
+                    <img 
+                      src={course.image} 
+                      alt={course.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <div className="flex justify-between items-start mb-3">
+                      <Badge color="primary">{course.category}</Badge>
+                      <Badge color="secondary">{course.level}</Badge>
                     </div>
-                    
-                    <div className="mt-4 flex-grow">
-                      <h3 className="text-lg font-semibold text-secondary-900 dark:text-white mb-1">
-                        {course.title}
-                      </h3>
-                      <p className="text-sm text-secondary-600 dark:text-secondary-400">
-                        {course.instructor}
-                      </p>
-                      
-                      <div className="flex items-center mt-2 mb-3">
-                        <div className="flex">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <svg 
-                              key={star} 
-                              className={`w-4 h-4 ${star <= Math.floor(course.rating) ? 'text-yellow-400' : 'text-secondary-300'} fill-current`} 
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                            </svg>
-                          ))}
-                        </div>
-                        <span className="text-xs text-secondary-500 dark:text-secondary-400 ml-1">
-                          ({course.rating})
-                        </span>
-                        <span className="text-xs text-secondary-500 dark:text-secondary-400 ml-4">
-                          {course.students.toLocaleString()} siswa
-                        </span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-between text-sm text-secondary-500 dark:text-secondary-400 mt-4 pt-4 border-t border-secondary-100 dark:border-secondary-700">
-                      <div className="flex items-center">
-                        <FiBarChart className="mr-1" />
-                        <span>{course.level}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <FiBook className="mr-1" />
+                    <h3 className="text-xl font-semibold mb-2 text-secondary-900 dark:text-white">
+                      {course.title}
+                    </h3>
+                    <p className="text-secondary-600 dark:text-secondary-400 mb-4">
+                      {course.instructor}
+                    </p>
+                    <div className="flex justify-between items-center text-sm">
+                      <div className="flex items-center text-secondary-600 dark:text-secondary-400">
                         <span>{course.lessons} pelajaran</span>
-                      </div>
-                      <div className="flex items-center">
-                        <FiClock className="mr-1" />
+                        <span className="mx-2">•</span>
                         <span>{course.duration}</span>
                       </div>
+                      <div className="flex items-center">
+                        <span className="text-yellow-500 mr-1">★</span>
+                        <span className="text-secondary-700 dark:text-secondary-300">{course.rating}</span>
+                      </div>
                     </div>
-                  </Card>
-                </motion.div>
-              ))
-            ) : (
-              <div className="col-span-full text-center py-12">
-                <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-xl font-semibold text-secondary-900 dark:text-white mb-2">
-                  Tidak ada kelas yang ditemukan
-                </h3>
-                <p className="text-secondary-600 dark:text-secondary-400">
-                  Silakan coba dengan kata kunci pencarian atau filter yang berbeda
-                </p>
-                <button
-                  onClick={clearFilters}
-                  className="mt-4 px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
-                >
-                  Hapus Filter
-                </button>
-              </div>
-            )}
-          </motion.div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-secondary-600 dark:text-secondary-400 text-lg">
+                Tidak ada kelas yang sesuai dengan filter yang dipilih.
+              </p>
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setCategoryFilter('');
+                  setLevelFilter('');
+                }}
+                className="mt-4 px-6 py-2 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors"
+              >
+                Reset Filter
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </>

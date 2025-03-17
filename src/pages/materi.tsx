@@ -1,13 +1,14 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FiBook, FiVideo, FiFileText, FiDownload, FiChevronDown, FiChevronRight } from 'react-icons/fi';
+import { FiBook, FiVideo, FiFileText, FiDownload, FiChevronDown, FiChevronRight, FiUser } from 'react-icons/fi';
 import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
 import { utbkMaterials } from '../utils/data';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React from 'react';
+import { useRouter } from 'next/router';
 
 
 interface SubTopic {
@@ -56,6 +57,8 @@ function Materi() {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const [expandedTopics, setExpandedTopics] = useState<ExpandedTopics>({});
   const [isClient, setIsClient] = useState(false);
+  const [user, setUser] = useState(null);
+  const router = useRouter();
   
   
   const typedUtbkMaterials = utbkMaterials as UTBKMaterials;
@@ -67,9 +70,43 @@ function Materi() {
   useEffect(() => {
     setIsClient(true);
  
+    // Memeriksa apakah user sudah login
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+      } catch (e) {
+        console.error('Error parsing user data:', e);
+      }
+    }
+    
     console.log("snbtMaterials loaded:", Object.keys(utbkMaterialsRef.current).length);
   }, []);
   
+  // Handle navigasi ke halaman login
+  const handleLoginClick = () => {
+    router.push('/login');
+  };
+  
+  // Jika user belum login, tampilkan halaman login
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-secondary-50 dark:bg-secondary-900 py-12 px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-center">
+        <div className="text-center mb-8">
+          <FiUser size={64} className="mx-auto text-secondary-400" />
+          <h2 className="mt-4 text-2xl font-semibold text-secondary-800 dark:text-white">Anda belum login</h2>
+          <p className="mt-2 text-secondary-600 dark:text-secondary-400">Silakan login untuk melihat profil Anda</p>
+          <button
+            onClick={handleLoginClick}
+            className="mt-6 px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors"
+          >
+            LOGIN
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const materialCategories = isClient ? Object.keys(typedUtbkMaterials).map(key => ({
     id: key,

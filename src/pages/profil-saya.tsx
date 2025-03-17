@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FiUser, FiMail, FiPhone, FiCalendar, FiMapPin, FiEdit2, FiSave } from 'react-icons/fi';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 
 interface User {
@@ -25,6 +26,7 @@ const UserProfilePage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedUser, setEditedUser] = useState<User | null>(null);
   const [activeTab, setActiveTab] = useState('personal');
+  const router = useRouter();
 
   useEffect(() => {
     
@@ -64,6 +66,10 @@ const UserProfilePage = () => {
     fetchUserData();
   }, []);
 
+  const handleLoginClick = () => {
+    router.push('/login');
+  };
+
   const handleEditToggle = () => {
     if (isEditing && editedUser) {
       
@@ -88,6 +94,7 @@ const UserProfilePage = () => {
     }
   };
 
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-secondary-50 dark:bg-secondary-900 py-12 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
@@ -105,6 +112,12 @@ const UserProfilePage = () => {
           <FiUser size={64} className="mx-auto text-secondary-400" />
           <h2 className="mt-4 text-2xl font-semibold text-secondary-800 dark:text-white">Anda belum login</h2>
           <p className="mt-2 text-secondary-600 dark:text-secondary-400">Silakan login untuk melihat profil Anda</p>
+          <button
+            onClick={handleLoginClick}
+            className="mt-6 px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors"
+          >
+            LOGIN
+          </button>
         </div>
       </div>
     );
