@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { FiSearch, FiFilter, FiChevronDown, FiUser } from 'react-icons/fi';
@@ -203,10 +204,12 @@ const KelasOnline: React.FC = () => {
               {filteredCourses.map((course) => (
                 <Card key={course.id} className="hover:shadow-lg transition-shadow duration-300">
                   <div className="aspect-video relative overflow-hidden rounded-t-lg">
-                    <img 
+                    <Image 
                       src={course.image} 
                       alt={course.title} 
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover"
                     />
                   </div>
                   <div className="p-5">

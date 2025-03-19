@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import axios from 'axios';
@@ -120,7 +121,7 @@ const LoginPage = () => {
               </div>
             </div>
             <p className="text-center text-white mt-4">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link href="/signup" className="text-[#4a9fff] hover:underline">
                 Register here
               </Link>
@@ -139,10 +140,12 @@ const LoginPage = () => {
 
       {/* Welcome Section (Right) */}
       <div className="relative hidden md:block md:w-7/12">
-        <img 
+        <Image 
           src="/bukubege.png" 
           alt="Welcome background" 
-          className="absolute inset-0 w-full h-full object-cover"
+          className="object-cover"
+          fill
+          priority
         />
       </div>
     </div>

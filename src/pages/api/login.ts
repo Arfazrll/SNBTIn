@@ -2,11 +2,20 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { cors, runMiddleware } from "../../lib/cors";
 
 const prisma = new PrismaClient();
 const SECRET_KEY = process.env.JWT_SECRET || "rahasia"; // Ensure this is set in Vercel
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Run the CORS middleware
+  await runMiddleware(req, res, cors);
+  
+  // Handle OPTIONS request for CORS preflight
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   if (req.method !== "POST") {
     return res.setHeader("Allow", ["POST"]).status(405).json({ message: "Method Not Allowed" });
   }
